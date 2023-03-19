@@ -4,19 +4,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
 public class Calculation {
     Double thermalTimeConstant;
     Double outdoorTemp;
-    LinkedHashMap<LocalDate, ArrayList<Temperature>> TEMPERATURES_MAP;
-    ArrayList<Temperature> TEMPERATURES = new ArrayList<>();
+    LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap;
+    ArrayList<Temperature> temperatures = new ArrayList<>();
     Double exponent;
     Double multiplier;
 
-    Calculation(Double thermalTimeConstant, LinkedHashMap<LocalDate, ArrayList<Temperature>> TEMPERATURES_MAP) {
-        this.TEMPERATURES_MAP = TEMPERATURES_MAP;
+    Calculation(Double thermalTimeConstant, LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+        this.temperaturesMap = temperaturesMap;
         this.multiplier = Math.exp(-(10.0 / 60) / thermalTimeConstant);// (exponent)
     }
 
@@ -24,16 +25,16 @@ public class Calculation {
         return outdoorTemp + (roomTemp - outdoorTemp) * multiplier;
     }
 
-    public ArrayList<Temperature> calculation(String startTimeString, Double initialRoomTemperature) {
+    public List<Temperature> calculation(String startTimeString, Double initialRoomTemperature) {
         Locale huLoc = new Locale("hu");
         DateTimeFormatter napNeveMagyarul = DateTimeFormatter.ofPattern("EEEE", huLoc);
         String day;
         Double roomTemp = initialRoomTemperature;
 
-        Set<LocalDate> localDates = TEMPERATURES_MAP.keySet();
+        Set<LocalDate> localDates = temperaturesMap.keySet();
         for (LocalDate localDate : localDates) {
-            for (Temperature temperature : TEMPERATURES_MAP.get(localDate)) {
-                TEMPERATURES.add(temperature);
+            for (Temperature temperature : temperaturesMap.get(localDate)) {
+                temperatures.add(temperature);
                 temperature.setDate(localDate);
                 day = localDate.format(napNeveMagyarul);
                 temperature.setDay(day);
@@ -42,21 +43,21 @@ public class Calculation {
 
         int startTimeIndex = searchStartTimeIndex(startTimeString);
 
-        for (int i = startTimeIndex; i < TEMPERATURES.size(); i++) {
-            TEMPERATURES.get(i).setRoomTemp(roomTemp);
-            outdoorTemp = TEMPERATURES.get(i).getOutdoorTemp();
+        for (int i = startTimeIndex; i < temperatures.size(); i++) {
+            temperatures.get(i).setRoomTemp(roomTemp);
+            outdoorTemp = temperatures.get(i).getOutdoorTemp();
             if (outdoorTemp != null) {
                 roomTemp = tau(roomTemp);
             }
         }
-        return TEMPERATURES;
+        return temperatures;
     }
 
     public int searchStartTimeIndex(String startTimeString) {
         String timeString;
         int startTimeIndex = 0;
         for (int i = 0; i < 144; i++) {
-            timeString = TEMPERATURES.get(i).getTime();
+            timeString = temperatures.get(i).getTime();
             if (timeString.equals(startTimeString)) {
                 startTimeIndex = i;
             }
@@ -69,7 +70,7 @@ public class Calculation {
         Double temp;
         int divider = 144;
         for (int i = indexOfMeasuredTemperatures - 1; i > indexOfMeasuredTemperatures - 145; i--) {
-            temp = TEMPERATURES.get(i).getOutdoorTemp();
+            temp = temperatures.get(i).getOutdoorTemp();
             if (temp != null) {
                 sum += temp;
             } else {
@@ -80,11 +81,11 @@ public class Calculation {
     }
 
     public void forecast(int indexOfMeasuredTemperatures, Double last24hAverage) {
-        Double roomTemp = TEMPERATURES.get(indexOfMeasuredTemperatures - 1).getRoomTemp();
-        for (int i = indexOfMeasuredTemperatures; i < TEMPERATURES.size(); i++) {
-            TEMPERATURES.get(i).setOutdoorTemp(last24hAverage);
-            TEMPERATURES.get(i).setRoomTemp(roomTemp);
-            outdoorTemp = TEMPERATURES.get(i).getOutdoorTemp();
+        Double roomTemp = temperatures.get(indexOfMeasuredTemperatures - 1).getRoomTemp();
+        for (int i = indexOfMeasuredTemperatures; i < temperatures.size(); i++) {
+            temperatures.get(i).setOutdoorTemp(last24hAverage);
+            temperatures.get(i).setRoomTemp(roomTemp);
+            outdoorTemp = temperatures.get(i).getOutdoorTemp();
             if (outdoorTemp != null) {
                 roomTemp = tau(roomTemp);
             }

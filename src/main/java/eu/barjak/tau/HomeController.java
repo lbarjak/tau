@@ -16,10 +16,10 @@ public class HomeController {
 
     private void extracted(Model model) {
         model.addAttribute("indexOfMeasuredTemperatures", weatherService.weather());
-        model.addAttribute("temperatures", WeatherService.TEMPERATURES);
-        model.addAttribute("startDate", WeatherService.startDateString);
-        model.addAttribute("endDate", WeatherService.endDateString);
-        model.addAttribute("initialRoomTemperature", WeatherService.initialRoomTemperature);
+        model.addAttribute("temperatures", weatherService.temperatures);
+        model.addAttribute("startDate", weatherService.startDateString);
+        model.addAttribute("endDate", weatherService.endDateString);
+        model.addAttribute("initialRoomTemperature", weatherService.initialRoomTemperature);
     }
 
     @GetMapping("/")
