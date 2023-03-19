@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,15 +16,15 @@ import java.util.regex.Pattern;
 public class WeatherQuery {
     int id = 590; // MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
     int indexOfMeasuredTemperatures = 0;
-    LinkedHashMap<LocalDate, ArrayList<Temperature>> TEMPERATURES_MAP;
+    LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap;
 
-    public WeatherQuery(LinkedHashMap<LocalDate, ArrayList<Temperature>> TEMPERATURES_MAP) {
-        this.TEMPERATURES_MAP = TEMPERATURES_MAP;
+    public WeatherQuery(Map<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+        this.temperaturesMap = (LinkedHashMap<LocalDate, ArrayList<Temperature>>) temperaturesMap;
     }
 
     public int steps() {
         LocalDate today = LocalDate.now();
-        Set<LocalDate> localDates = TEMPERATURES_MAP.keySet();
+        Set<LocalDate> localDates = temperaturesMap.keySet();
         for (LocalDate localDate : localDates) {
             if (!localDate.isAfter(today)) {
                 try {
@@ -70,7 +71,7 @@ public class WeatherQuery {
         for (int i = 0; i < outdoorTemperatureList.size(); i++) {// 144
             if (!outdoorTemperatureList.get(i).equals("null")) {
                 outdoorTemperature = Double.parseDouble(outdoorTemperatureList.get(i));
-                TEMPERATURES_MAP.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
+                temperaturesMap.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
                 indexOfMeasuredTemperatures++;
             }
         }
