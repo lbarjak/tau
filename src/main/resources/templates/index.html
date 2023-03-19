@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hu-HU" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Thermal Time Constant</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	<style>
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			margin: 0px;
+			border: 0;
+			overflow: hidden;
+			/*  Disable scrollbars */
+			display: block;
+			/* No floating content on sides */
+			background-color: gray;
+			font-family: Arial, Helvetica, sans-serif;
+			text-align: center;
+		}
+
+		div {
+			height: 5%;
+			text-align: center;
+		}
+	</style>
+	<script>
+		document.oncontextmenu = (e) => {
+			e.preventDefault()
+		}
+		document.onselectstart = () => {
+			return false
+		}
+		const fontFile = new FontFace(
+			"Inconsolata",
+			'url(https://fonts.gstatic.com/s/inconsolata/v31/QlddNThLqRwH-OJ1UHjlKENVzlm-WkL3GZQmAwPyya15.woff2) format("woff2")',
+			{ stretch: "50% 200%" }
+		)
+		document.fonts.add(fontFile)
+		document.fonts.load("18px Inconsolata")
+	</script>
+</head>
+
+<body>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		let indexOfMeasuredTemperatures = /*[[${indexOfMeasuredTemperatures}]]*/'indexOfMeasuredTemperatures';
+		let temperatures = /*[[${temperatures}]]*/'temperatures';
+		let startDate = /*[[${startDate}]]*/'startDate';
+		let endDate = /*[[${endDate}]]*/'endDate';
+		let initialRoomTemperature = /*[[${initialRoomTemperature}]]*/'initialRoomTemperature';
+		/*]]>*/
+	</script>
+	<div>
+		<p>Termikus időállandó τ</p>
+	</div>
+	<canvas></canvas>
+	<script src="main.js"></script>
+</body>
