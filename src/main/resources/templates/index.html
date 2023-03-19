@@ -36,12 +36,6 @@
 		}
 	</style>
 	<script>
-		document.oncontextmenu = (e) => {
-			e.preventDefault()
-		}
-		document.onselectstart = () => {
-			return false
-		}
 		const fontFile = new FontFace(
 			"Inconsolata",
 			'url(https://fonts.gstatic.com/s/inconsolata/v31/QlddNThLqRwH-OJ1UHjlKENVzlm-WkL3GZQmAwPyya15.woff2) format("woff2")',
@@ -49,6 +43,12 @@
 		)
 		document.fonts.add(fontFile)
 		document.fonts.load("18px Inconsolata")
+		document.oncontextmenu = (e) => {
+			e.preventDefault()
+		}
+		document.onselectstart = () => {
+			return false
+		}
 	</script>
 </head>
 
