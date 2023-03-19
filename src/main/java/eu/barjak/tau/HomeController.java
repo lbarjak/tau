@@ -1,8 +1,5 @@
 package eu.barjak.tau;
 
-import java.io.IOException;
-import java.text.ParseException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +23,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String neu(Model model) throws ParseException, IOException {
+    public String neu(Model model) {
         extracted(model);
         return "index";
     }
