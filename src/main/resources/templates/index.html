@@ -70,22 +70,26 @@
 		/*]]>*/
 	</script>
 	<div>
-		<form>
+		<form id="data">
 			<label for="tau">Termikus időállandó:</label>
-			<input type="text" value="90" id="tau" name="tau" size="2" maxlength="2"
-				pattern="^(0[1-9]|[1-9][0-9])$"><span>&nbsp;</span>
+			<input type="text" value="90" id="tau" name="tau" size="2" maxlength="2" pattern="^(0[1-9]|[1-9][0-9])$">
+			<span>&nbsp;</span>
 			<label for="omsz">OMSZ állomás:</label>
 			<input type="text" value="590" id="omsz" name="omsz" size="3" maxlength="3"
-				pattern="^(0[1-9]|[1-9][0-9]{1,2})$"><span>&nbsp;</span>
-			<label for="tau">Kezdő dátum:</label>
+				pattern="^(0[1-9]|[1-9][0-9]{1,2})$">
+			<span>&nbsp;</span>
+			<label for="date1">Kezdő dátum:</label>
 			<input type="text" value="2023.03.18." id="date1" name="date1" size="11" maxlength="11"
-				pattern="^\d{4}[\.\/\s]?((((0[13578])|(1[02]))[\.\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\.\/\s]?(([0-2][0-9])|(30)))|(02[\.\/\s]?[0-2][0-9]))\.$"><span>&nbsp;</span>
+				pattern="^\d{4}[\.\/\s]?((((0[13578])|(1[02]))[\.\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\.\/\s]?(([0-2][0-9])|(30)))|(02[\.\/\s]?[0-2][0-9]))\.$">
+			<span>&nbsp;</span>
 			<label for="time">Kezdő időpont:</label>
-			<input type="text" value="16:50" id="time" name="time" size="5" maxlength="5"
-				pattern="^[0-9]{2}:[0-9]{2}$"><span>&nbsp;</span>
-			<label for="tau">Záró dátum:</label>
+			<input type="text" value="16:50" id="time" name="time" size="5" maxlength="5" pattern="^[0-9]{2}:[0-9]{2}$">
+			<span>&nbsp;</span>
+			<label for="date2">Záró dátum:</label>
 			<input type="text" value="2023.03.26." id="date2" name="date2" size="11" maxlength="11"
-				pattern="^\d{4}[\.\/\s]?((((0[13578])|(1[02]))[\.\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\.\/\s]?(([0-2][0-9])|(30)))|(02[\.\/\s]?[0-2][0-9]))\.$"><span>&nbsp;</span>
+				pattern="^\d{4}[\.\/\s]?((((0[13578])|(1[02]))[\.\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\.\/\s]?(([0-2][0-9])|(30)))|(02[\.\/\s]?[0-2][0-9]))\.$">
+			<span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>
+			<button type="submit">Ok.</button>
 		</form>
 	</div>
 	<canvas></canvas>
