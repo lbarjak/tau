@@ -1,12 +1,14 @@
-let data = document.getElementById("data")
-data.addEventListener("submit", (e) => {
+let dataForm = document.getElementById("dataForm")
+dataForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    let tau = document.getElementById("tau");
-    let omsz = document.getElementById("omsz");
-    let date1 = document.getElementById("date1");
-    let time = document.getElementById("time");
-    let date2 = document.getElementById("date2");
+    let tau = document.getElementById("tau")
+    let initRoomTemp = document.getElementById("initRoomTemp")
+    let omsz = document.getElementById("omsz")
+    let date1 = document.getElementById("date1")
+    let time = document.getElementById("time")
+    let date2 = document.getElementById("date2")
     console.log("tau: " + tau.value)
+    console.log("initRoomTemp: " + initRoomTemp.value)
     console.log("omsz: " + omsz.value)
     console.log("date1: " + date1.value)
     console.log("time: " + time.value)

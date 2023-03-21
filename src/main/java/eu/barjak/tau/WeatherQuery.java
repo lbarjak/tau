@@ -14,12 +14,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WeatherQuery {
-    int id = 590; // MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
+    int omszId;
     int indexOfMeasuredTemperatures = 0;
     LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap;
 
-    public WeatherQuery(Map<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+    public WeatherQuery(int omszId, Map<LocalDate, ArrayList<Temperature>> temperaturesMap) {
         this.temperaturesMap = (LinkedHashMap<LocalDate, ArrayList<Temperature>>) temperaturesMap;
+        this.omszId = omszId;
     }
 
     public int steps() {
@@ -42,7 +43,8 @@ public class WeatherQuery {
 
     public void query(LocalDate actualDate) throws IOException {
         URL url = new URL(
-                "https://www.metnet.hu/online-allomasok?sub=showosdata&ostid=" + id + "&date=" + actualDate.toString());
+                "https://www.metnet.hu/online-allomasok?sub=showosdata&ostid=" + omszId + "&date="
+                        + actualDate.toString());
         BufferedReader in;
         in = new BufferedReader(new InputStreamReader(url.openStream()));
         try {

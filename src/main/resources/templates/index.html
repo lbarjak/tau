@@ -62,17 +62,23 @@
 <body>
 	<script th:inline="javascript">
 		/*<![CDATA[*/
-		let indexOfMeasuredTemperatures = /*[[${indexOfMeasuredTemperatures}]]*/'indexOfMeasuredTemperatures';
-		let temperatures = /*[[${temperatures}]]*/'temperatures';
-		let startDate = /*[[${startDate}]]*/'startDate';
-		let endDate = /*[[${endDate}]]*/'endDate';
-		let initialRoomTemperature = /*[[${initialRoomTemperature}]]*/'initialRoomTemperature';
+		let indexOfMeasuredTemperatures = /*[[${indexOfMeasuredTemperatures}]]*/'indexOfMeasuredTemperatures'
+		let temperatures = /*[[${temperatures}]]*/'temperatures'
+		let startDate = /*[[${startDate}]]*/'startDate'
+		let endDate = /*[[${endDate}]]*/'endDate'
+		let initRoomTemp = /*[[${initRoomTemp}]]*/'initRoomTemp'
 		/*]]>*/
 	</script>
 	<div>
-		<form id="data">
+		<form id="dataForm" action="#" th:action="@{/}" method="post">
+			<!-- <form id="data" action="#" th:action="@{/data}" method="post" th:object="${weatherService}"> -->
 			<label for="tau">Termikus időállandó:</label>
 			<input type="text" value="90" id="tau" name="tau" size="2" maxlength="2" pattern="^(0[1-9]|[1-9][0-9])$">
+			<span>&nbsp;</span>
+			<label for="initRoomTemp">Helyiség hőmérséklete:</label>
+			<!-- <input type="text" value="18" id="initRoomTemp" name="initRoomTemp" size="2" maxlength="2" -->
+			<input th:value="*{initRoomTemp}" type="text" id="initRoomTemp" name="initRoomTemp" size="4"
+				pattern="^(0[1-9]|[1-9][0-9])\.[0-9]$">
 			<span>&nbsp;</span>
 			<label for="omsz">OMSZ állomás:</label>
 			<input type="text" value="590" id="omsz" name="omsz" size="3" maxlength="3"

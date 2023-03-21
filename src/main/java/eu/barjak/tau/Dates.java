@@ -11,11 +11,11 @@ import java.util.LinkedHashMap;
 
 public class Dates {
 
-    private final ArrayList<LocalDate> LOCALDATES = new ArrayList<>();
-    private LinkedHashMap<LocalDate, ArrayList<Temperature>> TEMPERATURES_MAP;
+    private final ArrayList<LocalDate> localdates = new ArrayList<>();
+    private LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap;
 
-    Dates(LinkedHashMap<LocalDate, ArrayList<Temperature>> TEMPERATURES_MAP) {
-        this.TEMPERATURES_MAP = TEMPERATURES_MAP;
+    Dates(LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+        this.temperaturesMap = temperaturesMap;
     }
 
     public void elapsedDays(LocalDate startDate, LocalDate endDate) throws ParseException {
@@ -23,10 +23,10 @@ public class Dates {
         long elapsed = Period.between(startDate, endDate).getDays();
         for (int i = 0; i <= elapsed; i++) {
             tmpDate = startDate.plus(Period.ofDays(i));
-            LOCALDATES.add(tmpDate);
+            localdates.add(tmpDate);
         }
-        for (LocalDate localDate : LOCALDATES) {
-            TEMPERATURES_MAP.put(localDate, new ArrayList<>());
+        for (LocalDate localDate : localdates) {
+            temperaturesMap.put(localDate, new ArrayList<>());
             addTimes(localDate);
         }
     }
@@ -38,10 +38,10 @@ public class Dates {
         Calendar cal = Calendar.getInstance();
         cal.setTime(d);
         for (int i = 0; i < 144; i++) {
-            TEMPERATURES_MAP.get(actualDate).add(new Temperature());
+            temperaturesMap.get(actualDate).add(new Temperature());
             cal.add(Calendar.MINUTE, 10);
             String newTime = sdf.format(cal.getTime());
-            TEMPERATURES_MAP.get(actualDate).get(i).setTime(newTime);
+            temperaturesMap.get(actualDate).get(i).setTime(newTime);
         }
     }
 }

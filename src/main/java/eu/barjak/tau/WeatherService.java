@@ -9,15 +9,22 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class WeatherService {
-    String startDateString = "2023-03-18";
-    String endDateString = "2023-03-26";
-    String startTimeString = "16:50";
-    Double initialRoomTemperature = 18d;
-    Double thermalTimeConstant = 90d;// min. 3.3 max. 122
+    Data data = new Data();
+    Double thermalTimeConstant = data.getThermalTimeConstant();
+    String startDateString = data.getStartDateString();
+    String endDateString = data.getEndDateString();
+    String startTimeString = data.getStartTimeString();
+    Double initRoomTemp = data.getInitRoomTemp();
+    int omszId = data.getOmszId();
     LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = new LinkedHashMap<>();
     ArrayList<Temperature> temperatures;
 
+    public void nemkell() {
+        System.out.println("" + "nemkell");
+    }
+
     public int weather() {
+        System.out.println("initRoomTemp " + initRoomTemp);
         LocalDate startDate = LocalDate.parse(startDateString);
         LocalDate endDate = LocalDate.parse(endDateString);
 
@@ -30,12 +37,12 @@ public class WeatherService {
             e.printStackTrace();
         }
 
-        WeatherQuery weatherQuery = new WeatherQuery(temperaturesMap);
+        WeatherQuery weatherQuery = new WeatherQuery(omszId, temperaturesMap);
         int indexOfMeasuredTemperatures = weatherQuery.steps();
 
         if (indexOfMeasuredTemperatures > 0) {
             Calculation calculation = new Calculation(thermalTimeConstant, temperaturesMap);
-            temperatures = (ArrayList<Temperature>) calculation.calculation(startTimeString, initialRoomTemperature);
+            temperatures = (ArrayList<Temperature>) calculation.calculation(startTimeString, initRoomTemp);
             if (indexOfMeasuredTemperatures > 144) {
                 Double last24hAverage = calculation.last24hAverage(indexOfMeasuredTemperatures);
                 calculation.forecast(indexOfMeasuredTemperatures, last24hAverage);
