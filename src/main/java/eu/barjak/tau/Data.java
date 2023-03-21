@@ -19,8 +19,8 @@ public class Data {
     }
 
     private int thermalTimeConstant = 90;// min. 3.3 max. 122
-    private String startDateString = "2023-03-18";
-    private String endDateString = "2023-03-26";
+    private String startDateString = "2023.03.18.";
+    private String endDateString = "2023.03.26.";
     private String startTimeString = "16:50";
     private Double initRoomTemp = 18d;
     private int omszId = 590; // MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615

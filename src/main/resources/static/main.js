@@ -74,7 +74,7 @@ let xTicks = () => {
         }
         if (i % 144 == 72) {
             drawText((temperatures[i]["day"]), x, 2.8 * fontSize, "center")
-            drawText((temperatures[i]["date"]).replaceAll('-', '.') + ".", x, 3.8 * fontSize, "center")
+            drawText((temperatures[i]["date"]), x, 3.8 * fontSize, "center")
         }
     }
 }

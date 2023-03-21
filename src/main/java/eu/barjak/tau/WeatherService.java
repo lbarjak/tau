@@ -2,6 +2,7 @@ package eu.barjak.tau;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -22,8 +23,9 @@ public class WeatherService {
     ArrayList<Temperature> temperatures = data.getTemperatures();
 
     public void weather() {
-        LocalDate startDate = LocalDate.parse(startDateString);
-        LocalDate endDate = LocalDate.parse(endDateString);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.");
+        LocalDate startDate = LocalDate.parse(startDateString, formatter);
+        LocalDate endDate = LocalDate.parse(endDateString, formatter);
 
         data.clearTemperatures();
 

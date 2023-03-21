@@ -33,10 +33,11 @@ public class Calculation {
         Double roomTemp = initialRoomTemperature;
 
         Set<LocalDate> localDates = temperaturesMap.keySet();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.");
         for (LocalDate localDate : localDates) {
             for (Temperature temperature : temperaturesMap.get(localDate)) {
                 temperatures.add(temperature);
-                temperature.setDate(localDate);
+                temperature.setDate(formatter.format(localDate));
                 day = localDate.format(napNeveMagyarul);
                 temperature.setDay(day);
             }
