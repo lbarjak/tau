@@ -1,18 +1,18 @@
 let dataForm = document.getElementById("dataForm")
 dataForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    let tau = document.getElementById("tau")
+    let thermalTimeConstant = document.getElementById("thermalTimeConstant")
     let initRoomTemp = document.getElementById("initRoomTemp")
-    let omsz = document.getElementById("omsz")
-    let date1 = document.getElementById("date1")
-    let time = document.getElementById("time")
-    let date2 = document.getElementById("date2")
-    console.log("tau: " + tau.value)
+    let omszId = document.getElementById("omszId")
+    let startDate = document.getElementById("startDate")
+    let startTime = document.getElementById("startTime")
+    let endDate = document.getElementById("endDate")
+    console.log("thermalTimeConstant: " + thermalTimeConstant.value)
     console.log("initRoomTemp: " + initRoomTemp.value)
-    console.log("omsz: " + omsz.value)
-    console.log("date1: " + date1.value)
-    console.log("time: " + time.value)
-    console.log("date2: " + date2.value)
+    console.log("omszId: " + omszId.value)
+    console.log("startDate: " + startDate.value)
+    console.log("startTime: " + startTime.value)
+    console.log("endDate: " + endDate.value)
 });
 
 let graph = document.getElementsByTagName('canvas')[0]

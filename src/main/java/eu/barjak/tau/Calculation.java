@@ -15,7 +15,7 @@ public class Calculation {
     Double exponent;
     Double multiplier;
 
-    Calculation(Double thermalTimeConstant, LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap,
+    Calculation(int thermalTimeConstant, LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap,
             ArrayList<Temperature> temperatures) {
         this.temperaturesMap = temperaturesMap;
         this.temperatures = temperatures;

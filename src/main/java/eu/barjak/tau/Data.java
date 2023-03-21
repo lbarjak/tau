@@ -18,7 +18,7 @@ public class Data {
         return instance;
     }
 
-    private Double thermalTimeConstant = 90d;// min. 3.3 max. 122
+    private int thermalTimeConstant = 90;// min. 3.3 max. 122
     private String startDateString = "2023-03-18";
     private String endDateString = "2023-03-26";
     private String startTimeString = "16:50";
@@ -28,11 +28,11 @@ public class Data {
     private ArrayList<Temperature> temperatures = new ArrayList<>();
     private int indexOfMeasuredTemperatures;
 
-    public Double getThermalTimeConstant() {
+    public int getThermalTimeConstant() {
         return this.thermalTimeConstant;
     }
 
-    public void setThermalTimeConstant(Double thermalTimeConstant) {
+    public void setThermalTimeConstant(int thermalTimeConstant) {
         this.thermalTimeConstant = thermalTimeConstant;
     }
 
@@ -98,6 +98,10 @@ public class Data {
 
     public void setIndexOfMeasuredTemperatures(int indexOfMeasuredTemperatures) {
         this.indexOfMeasuredTemperatures = indexOfMeasuredTemperatures;
+    }
+
+    public void clearTemperatures() {
+        this.temperatures.clear();
     }
 
 }

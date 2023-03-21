@@ -12,7 +12,7 @@ public class WeatherService {
 
     Data data = Data.getInstance();
 
-    Double thermalTimeConstant = data.getThermalTimeConstant();
+    int thermalTimeConstant = data.getThermalTimeConstant();
     String startDateString = data.getStartDateString();
     String endDateString = data.getEndDateString();
     String startTimeString = data.getStartTimeString();
@@ -25,7 +25,7 @@ public class WeatherService {
         LocalDate startDate = LocalDate.parse(startDateString);
         LocalDate endDate = LocalDate.parse(endDateString);
 
-        temperaturesMap.clear();
+        data.clearTemperatures();
 
         Dates dates = new Dates(temperaturesMap);
         try {

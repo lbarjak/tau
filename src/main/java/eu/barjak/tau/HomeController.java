@@ -17,11 +17,14 @@ public class HomeController {
     }
 
     private void extracted(Model model) {
-        model.addAttribute("startDate", data.getStartDateString());
-        model.addAttribute("endDate", data.getEndDateString());
-        model.addAttribute("initRoomTemp", data.getEndDateString());
+        model.addAttribute("startDate", data.getStartDateString().replace("-", ".") + ".");
+        model.addAttribute("startTime", data.getStartTimeString());
+        model.addAttribute("endDate", data.getEndDateString().replace("-", ".") + ".");
+        model.addAttribute("initRoomTemp", data.getInitRoomTemp());
         model.addAttribute("indexOfMeasuredTemperatures", data.getIndexOfMeasuredTemperatures());
         model.addAttribute("temperatures", data.getTemperatures());
+        model.addAttribute("omszId", data.getOmszId());
+        model.addAttribute("thermalTimeConstant", data.getThermalTimeConstant());
     }
 
     @GetMapping("/")
