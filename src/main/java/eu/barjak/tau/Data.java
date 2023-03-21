@@ -3,10 +3,21 @@ package eu.barjak.tau;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Data {
+
+    private static Data instance = null;
+
+    private Data() {
+    }
+
+    public static Data getInstance() {
+        if (instance == null)
+            instance = new Data();
+
+        return instance;
+    }
+
     private Double thermalTimeConstant = 90d;// min. 3.3 max. 122
     private String startDateString = "2023-03-18";
     private String endDateString = "2023-03-26";
@@ -14,7 +25,7 @@ public class Data {
     private Double initRoomTemp = 18d;
     private int omszId = 590; // MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
     private LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = new LinkedHashMap<>();
-    private ArrayList<Temperature> temperatures;
+    private ArrayList<Temperature> temperatures = new ArrayList<>();
     private int indexOfMeasuredTemperatures;
 
     public Double getThermalTimeConstant() {
@@ -65,20 +76,20 @@ public class Data {
         this.omszId = omszId;
     }
 
-    public Map<LocalDate, ArrayList<Temperature>> getTemperaturesMap() {
+    public LinkedHashMap<LocalDate, ArrayList<Temperature>> getTemperaturesMap() {
         return this.temperaturesMap;
     }
 
-    public void setTemperaturesMap(Map<LocalDate, ArrayList<Temperature>> temperaturesMap) {
-        this.temperaturesMap = (LinkedHashMap<LocalDate, ArrayList<Temperature>>) temperaturesMap;
+    public void setTemperaturesMap(LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+        this.temperaturesMap = temperaturesMap;
     }
 
-    public List<Temperature> getTemperatures() {
+    public ArrayList<Temperature> getTemperatures() {
         return this.temperatures;
     }
 
-    public void setTemperatures(List<Temperature> temperatures) {
-        this.temperatures = (ArrayList<Temperature>) temperatures;
+    public void setTemperatures(ArrayList<Temperature> temperatures) {
+        this.temperatures = temperatures;
     }
 
     public int getIndexOfMeasuredTemperatures() {

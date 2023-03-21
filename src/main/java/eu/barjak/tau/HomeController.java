@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HomeController {
     private WeatherService weatherService;
+
+    private Data data = Data.getInstance();
 
     @Autowired
     public void getWeatherService(WeatherService weatherService) {
@@ -17,11 +17,11 @@ public class HomeController {
     }
 
     private void extracted(Model model) {
+        model.addAttribute("startDate", data.getStartDateString());
+        model.addAttribute("endDate", data.getEndDateString());
+        model.addAttribute("initRoomTemp", data.getEndDateString());
         model.addAttribute("indexOfMeasuredTemperatures", weatherService.weather());
-        model.addAttribute("temperatures", weatherService.temperatures);
-        model.addAttribute("startDate", weatherService.startDateString);
-        model.addAttribute("endDate", weatherService.endDateString);
-        model.addAttribute("initRoomTemp", weatherService.initRoomTemp);
+        model.addAttribute("temperatures", data.getTemperatures());
     }
 
     @GetMapping("/")

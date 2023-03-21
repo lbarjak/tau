@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WeatherService {
 
-    Data data = new Data();
+    Data data = Data.getInstance();
 
     Double thermalTimeConstant = data.getThermalTimeConstant();
     String startDateString = data.getStartDateString();
@@ -18,8 +18,8 @@ public class WeatherService {
     String startTimeString = data.getStartTimeString();
     Double initRoomTemp = data.getInitRoomTemp();
     int omszId = data.getOmszId();
-    LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = new LinkedHashMap<>();
-    ArrayList<Temperature> temperatures;
+    LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = data.getTemperaturesMap();
+    ArrayList<Temperature> temperatures = data.getTemperatures();
 
     public int weather() {
         LocalDate startDate = LocalDate.parse(startDateString);
@@ -38,8 +38,8 @@ public class WeatherService {
         int indexOfMeasuredTemperatures = weatherQuery.steps();
 
         if (indexOfMeasuredTemperatures > 0) {
-            Calculation calculation = new Calculation(thermalTimeConstant, temperaturesMap);
-            temperatures = (ArrayList<Temperature>) calculation.calculation(startTimeString, initRoomTemp);
+            Calculation calculation = new Calculation(thermalTimeConstant, temperaturesMap, temperatures);
+            calculation.calculation(startTimeString, initRoomTemp);
             if (indexOfMeasuredTemperatures > 144) {
                 Double last24hAverage = calculation.last24hAverage(indexOfMeasuredTemperatures);
                 calculation.forecast(indexOfMeasuredTemperatures, last24hAverage);

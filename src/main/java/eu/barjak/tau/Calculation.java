@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -12,12 +11,14 @@ public class Calculation {
     Double thermalTimeConstant;
     Double outdoorTemp;
     LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap;
-    ArrayList<Temperature> temperatures = new ArrayList<>();
+    ArrayList<Temperature> temperatures;
     Double exponent;
     Double multiplier;
 
-    Calculation(Double thermalTimeConstant, LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+    Calculation(Double thermalTimeConstant, LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap,
+            ArrayList<Temperature> temperatures) {
         this.temperaturesMap = temperaturesMap;
+        this.temperatures = temperatures;
         this.multiplier = Math.exp(-(10.0 / 60) / thermalTimeConstant);// (exponent)
     }
 
@@ -25,7 +26,7 @@ public class Calculation {
         return outdoorTemp + (roomTemp - outdoorTemp) * multiplier;
     }
 
-    public List<Temperature> calculation(String startTimeString, Double initialRoomTemperature) {
+    public void calculation(String startTimeString, Double initialRoomTemperature) {
         Locale huLoc = new Locale("hu");
         DateTimeFormatter napNeveMagyarul = DateTimeFormatter.ofPattern("EEEE", huLoc);
         String day;
@@ -50,7 +51,6 @@ public class Calculation {
                 roomTemp = tau(roomTemp);
             }
         }
-        return temperatures;
     }
 
     public int searchStartTimeIndex(String startTimeString) {

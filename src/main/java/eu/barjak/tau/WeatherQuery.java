@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,8 +17,8 @@ public class WeatherQuery {
     int indexOfMeasuredTemperatures = 0;
     LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap;
 
-    public WeatherQuery(int omszId, Map<LocalDate, ArrayList<Temperature>> temperaturesMap) {
-        this.temperaturesMap = (LinkedHashMap<LocalDate, ArrayList<Temperature>>) temperaturesMap;
+    public WeatherQuery(int omszId, LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+        this.temperaturesMap = temperaturesMap;
         this.omszId = omszId;
     }
 
