@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class WeatherService {
+
     Data data = new Data();
+
     Double thermalTimeConstant = data.getThermalTimeConstant();
     String startDateString = data.getStartDateString();
     String endDateString = data.getEndDateString();
@@ -19,12 +21,7 @@ public class WeatherService {
     LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = new LinkedHashMap<>();
     ArrayList<Temperature> temperatures;
 
-    public void nemkell() {
-        System.out.println("" + "nemkell");
-    }
-
     public int weather() {
-        System.out.println("initRoomTemp " + initRoomTemp);
         LocalDate startDate = LocalDate.parse(startDateString);
         LocalDate endDate = LocalDate.parse(endDateString);
 

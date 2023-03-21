@@ -30,18 +30,4 @@ public class HomeController {
         return "index";
     }
 
-    // private void extracted2(Model model2) {
-    // model2.addAttribute("startDate", weatherService.startDateString);
-    // model2.addAttribute("starTime", weatherService.startTimeString);
-    // model2.addAttribute("endDate", weatherService.endDateString);
-    // model2.addAttribute("initialRoomTemperature",
-    // weatherService.initialRoomTemperature);
-    // model2.addAttribute("tau", weatherService.thermalTimeConstant);
-    // }
-
-    @PostMapping("/")
-    public String dataForm(@ModelAttribute WeatherService weatherService) {
-        weatherService.nemkell();
-        return "ok";
-    }
 }
