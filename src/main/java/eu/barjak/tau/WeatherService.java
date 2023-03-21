@@ -21,7 +21,7 @@ public class WeatherService {
     LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = data.getTemperaturesMap();
     ArrayList<Temperature> temperatures = data.getTemperatures();
 
-    public int weather() {
+    public void weather() {
         LocalDate startDate = LocalDate.parse(startDateString);
         LocalDate endDate = LocalDate.parse(endDateString);
 
@@ -45,6 +45,6 @@ public class WeatherService {
                 calculation.forecast(indexOfMeasuredTemperatures, last24hAverage);
             }
         }
-        return indexOfMeasuredTemperatures;
+        data.setIndexOfMeasuredTemperatures(indexOfMeasuredTemperatures);
     }
 }

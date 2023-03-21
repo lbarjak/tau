@@ -20,12 +20,13 @@ public class HomeController {
         model.addAttribute("startDate", data.getStartDateString());
         model.addAttribute("endDate", data.getEndDateString());
         model.addAttribute("initRoomTemp", data.getEndDateString());
-        model.addAttribute("indexOfMeasuredTemperatures", weatherService.weather());
+        model.addAttribute("indexOfMeasuredTemperatures", data.getIndexOfMeasuredTemperatures());
         model.addAttribute("temperatures", data.getTemperatures());
     }
 
     @GetMapping("/")
     public String neu(Model model) {
+        weatherService.weather();
         extracted(model);
         return "index";
     }
