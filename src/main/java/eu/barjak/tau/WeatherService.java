@@ -14,9 +14,9 @@ public class WeatherService {
     Data data = Data.getInstance();
 
     int thermalTimeConstant = data.getThermalTimeConstant();
-    String startDateString = data.getStartDateString();
-    String endDateString = data.getEndDateString();
-    String startTimeString = data.getStartTimeString();
+    String startDateString = data.getStartDate();
+    String endDateString = data.getEndDate();
+    String startTimeString = data.getStartTime();
     Double initRoomTemp = data.getInitRoomTemp();
     int omszId = data.getOmszId();
     LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = data.getTemperaturesMap();
@@ -27,7 +27,7 @@ public class WeatherService {
         LocalDate startDate = LocalDate.parse(startDateString, formatter);
         LocalDate endDate = LocalDate.parse(endDateString, formatter);
 
-        data.clearTemperatures();
+        temperatures.clear();
 
         Dates dates = new Dates(temperaturesMap);
         try {

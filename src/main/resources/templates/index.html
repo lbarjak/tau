@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu-HU" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main}">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8" />
@@ -64,45 +63,42 @@
 		/*<![CDATA[*/
 		let indexOfMeasuredTemperatures = /*[[${indexOfMeasuredTemperatures}]]*/'indexOfMeasuredTemperatures'
 		let temperatures = /*[[${temperatures}]]*/'temperatures'
-		let thermalTimeConstant = /*[[${omsthermalTimeConstant}]]*/'thermalTimeConstant'
+		let thermalTimeConstant = /*[[${thermalTimeConstant}]]*/'thermalTimeConstant'
 		let initRoomTemp = /*[[${initRoomTemp}]]*/'initRoomTemp'
 		let omszId = /*[[${omszId}]]*/'omszId'
 		let startDate = /*[[${startDate}]]*/'startDate'
 		let startTime = /*[[${startTime}]]*/'startTime'
 		let endDate = /*[[${endDate}]]*/'endDate'
+		let data = /*[[${data}]]*/'data'
 		/*]]>*/
 	</script>
 	<div>
-		<form id="dataForm" action="#" th:action="@{/}" method="post">
-			<!-- <form id="data" action="#" th:action="@{/data}" method="post" th:object="${data}"> -->
+		<form id="dataForm" action="#" th:action="@{/nemkell}" method="post" th:object="${data}">
 			<label for="thermalTimeConstant">Termikus időállandó:</label>
-			<input th:value="*{thermalTimeConstant}" type="text" value="90" id="thermalTimeConstant"
-				name="thermalTimeConstant" size="2" maxlength="2" pattern="^(0[1-9]|[1-9][0-9])$">
+			<input th:field="*{thermalTimeConstant}" type="text" id="thermalTimeConstant" name="thermalTimeConstant"
+				size="2" maxlength="2" pattern="^(0[1-9]|[1-9][0-9])$">
 			<span>&nbsp;</span>
 			<label for="initRoomTemp">Helyiség hőmérséklete:</label>
-			<!-- <input type="text" value="18" id="initRoomTemp" name="initRoomTemp" size="2" maxlength="2" -->
-			<input th:value="*{initRoomTemp}" type="text" id="initRoomTemp" name="initRoomTemp" size="4"
+			<input th:field="*{initRoomTemp}" type="text" id="initRoomTemp" name="initRoomTemp" size="4"
 				pattern="^(0[1-9]|[1-9][0-9])\.[0-9]$">
 			<span>&nbsp;</span>
 			<label for="omszId">OMSZ állomás:</label>
-			<input th:value="*{omszId}" type="text" value="590" id="omszId" name="omszId" size="3" maxlength="3"
+			<input th:field="*{omszId}" type="text" id="omszId" name="omszId" size="3" maxlength="3"
 				pattern="^(0[1-9]|[1-9][0-9]{1,2})$">
 			<span>&nbsp;</span>
 			<label for="startDate">Kezdő dátum:</label>
-			<input th:value="*{startDate}" type="text" value="2023.03.18." id="startDate" name="startDate" size="11"
-				maxlength="11"
+			<input th:field="*{startDate}" type="text" id="startDate" name="startDate" size="11" maxlength="11"
 				pattern="^\d{4}[\.\/\s]?((((0[13578])|(1[02]))[\.\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\.\/\s]?(([0-2][0-9])|(30)))|(02[\.\/\s]?[0-2][0-9]))\.$">
 			<span>&nbsp;</span>
-			<label for="initRoomTemp">Kezdő időpont:</label>
-			<input th:value="*{startTime}" type="text" value="16:50" id="startTime" name="time" size="5" maxlength="5"
+			<label for="startTime">Kezdő időpont:</label>
+			<input th:field="*{startTime}" type="text" id="startTime" name="startTime" size="5" maxlength="5"
 				pattern="^[0-9]{2}:[0-9]{2}$">
 			<span>&nbsp;</span>
 			<label for="endDate">Záró dátum:</label>
-			<input th:value="*{endDate}" type="text" value="2023.03.26." id="endDate" name="endDate" size="11"
-				maxlength="11"
+			<input th:field="*{endDate}" type="text" id="endDate" name="endDate" size="11" maxlength="11"
 				pattern="^\d{4}[\.\/\s]?((((0[13578])|(1[02]))[\.\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\.\/\s]?(([0-2][0-9])|(30)))|(02[\.\/\s]?[0-2][0-9]))\.$">
 			<span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>
-			<button type="submit">Ok.</button>
+			<button type="submit">Ok</button>
 		</form>
 	</div>
 	<canvas></canvas>

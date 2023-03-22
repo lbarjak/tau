@@ -19,9 +19,9 @@ public class Data {
     }
 
     private int thermalTimeConstant = 90;// min. 3.3 max. 122
-    private String startDateString = "2023.03.18.";
-    private String endDateString = "2023.03.26.";
-    private String startTimeString = "16:50";
+    private String startDate = "2023.03.18.";
+    private String endDate = "2023.03.26.";
+    private String startTime = "16:50";
     private Double initRoomTemp = 18d;
     private int omszId = 590; // MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
     private LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = new LinkedHashMap<>();
@@ -36,28 +36,28 @@ public class Data {
         this.thermalTimeConstant = thermalTimeConstant;
     }
 
-    public String getStartDateString() {
-        return this.startDateString;
+    public String getStartDate() {
+        return this.startDate;
     }
 
-    public void setStartDateString(String startDateString) {
-        this.startDateString = startDateString;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
-    public String getEndDateString() {
-        return this.endDateString;
+    public String getEndDate() {
+        return this.endDate;
     }
 
-    public void setEndDateString(String endDateString) {
-        this.endDateString = endDateString;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
-    public String getStartTimeString() {
-        return this.startTimeString;
+    public String getStartTime() {
+        return this.startTime;
     }
 
-    public void setStartTimeString(String startTimeString) {
-        this.startTimeString = startTimeString;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
     public Double getInitRoomTemp() {
@@ -98,10 +98,6 @@ public class Data {
 
     public void setIndexOfMeasuredTemperatures(int indexOfMeasuredTemperatures) {
         this.indexOfMeasuredTemperatures = indexOfMeasuredTemperatures;
-    }
-
-    public void clearTemperatures() {
-        this.temperatures.clear();
     }
 
 }
