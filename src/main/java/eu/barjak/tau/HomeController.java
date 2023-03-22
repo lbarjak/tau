@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
@@ -39,10 +40,9 @@ public class HomeController {
     }
 
     @PostMapping("/nemkell")
-    public String dataForm(@ModelAttribute Data data, Model model) {
-        model.addAttribute("data", data);
+    public String dataForm(@ModelAttribute(value = "data") Data data) {
         System.out.println("POST /nemkell");
-        System.out.println(data.getThermalTimeConstant());
+        System.out.println("data: " + data.getThermalTimeConstant());
         return "nemkell";
     }
 
