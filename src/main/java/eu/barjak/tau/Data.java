@@ -29,12 +29,10 @@ public class Data {
     private int indexOfMeasuredTemperatures;
 
     public int getThermalTimeConstant() {
-        System.out.println("adatkérés érkezett: " + thermalTimeConstant);
         return this.thermalTimeConstant;
     }
 
     public void setThermalTimeConstant(int thermalTimeConstant) {
-        System.out.println("adat érkezett: " + thermalTimeConstant);
         this.thermalTimeConstant = thermalTimeConstant;
     }
 

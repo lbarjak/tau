@@ -1,19 +1,5 @@
-// let dataForm = document.getElementById("dataForm")
-// dataForm.addEventListener("submit", (e) => {
-//     e.preventDefault();
-//     let thermalTimeConstant = document.getElementById("thermalTimeConstant")
-//     let initRoomTemp = document.getElementById("initRoomTemp")
-//     let omszId = document.getElementById("omszId")
-//     let startDate = document.getElementById("startDate")
-//     let startTime = document.getElementById("startTime")
-//     let endDate = document.getElementById("endDate")
-//     console.log("thermalTimeConstant: " + thermalTimeConstant.value)
-//     console.log("initRoomTemp: " + initRoomTemp.value)
-//     console.log("omszId: " + omszId.value)
-//     console.log("startDate: " + startDate.value)
-//     console.log("startTime: " + startTime.value)
-//     console.log("endDate: " + endDate.value)
-// });
+let indexOfMeasuredTemperatures = data.indexOfMeasuredTemperatures
+let temperatures = data.temperatures
 
 let graph = document.getElementsByTagName('canvas')[0]
 

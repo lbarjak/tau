@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
@@ -35,14 +34,16 @@ public class HomeController {
     public String neu(Model model) {
         weatherService.weather();
         extracted(model);
-        System.out.println("GET /");
         return "index";
     }
 
+    // public String adatok(Model model) {
+    //     extracted(model);
+    //     return "message/list";
+    // }
+
     @PostMapping("/nemkell")
     public String dataForm(@ModelAttribute(value = "data") Data data) {
-        System.out.println("POST /nemkell");
-        System.out.println("data: " + data.getThermalTimeConstant());
         return "nemkell";
     }
 
