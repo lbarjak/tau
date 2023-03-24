@@ -19,14 +19,6 @@ public class HomeController {
     }
 
     private void extracted(Model model) {
-        model.addAttribute("startDate", data.getStartDate());
-        model.addAttribute("startTime", data.getStartTime());
-        model.addAttribute("endDate", data.getEndDate());
-        model.addAttribute("initRoomTemp", data.getInitRoomTemp());
-        model.addAttribute("indexOfMeasuredTemperatures", data.getIndexOfMeasuredTemperatures());
-        model.addAttribute("temperatures", data.getTemperatures());
-        model.addAttribute("omszId", data.getOmszId());
-        model.addAttribute("thermalTimeConstant", data.getThermalTimeConstant());
         model.addAttribute("data", data);
     }
 
