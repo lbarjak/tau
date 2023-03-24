@@ -33,6 +33,7 @@ public class Data {
     }
 
     public void setThermalTimeConstant(int thermalTimeConstant) {
+        System.out.println("in Data set termikus időállandó: " + thermalTimeConstant);
         this.thermalTimeConstant = thermalTimeConstant;
     }
 

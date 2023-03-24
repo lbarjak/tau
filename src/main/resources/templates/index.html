@@ -65,10 +65,10 @@
 		/*]]>*/
 	</script>
 	<div>
-		<form id="dataForm" action="#" th:action="@{/nemkell}" method="post" th:object="${data}">
+		<form id="dataForm" action="#" th:action="@{/}" method="post" th:object="${data}">
 			<label for="thermalTimeConstant">Termikus időállandó:</label>
-			<input th:field="${data.thermalTimeConstant}" type="text" id="thermalTimeConstant" name="thermalTimeConstant"
-				size="2" maxlength="2" pattern="^(0[1-9]|[1-9][0-9])$">
+			<input th:field="${data.thermalTimeConstant}" type="text" id="thermalTimeConstant"
+				name="thermalTimeConstant" size="2" maxlength="2" pattern="^(0[1-9]|[1-9][0-9])$">
 			<span>&nbsp;</span>
 			<label for="initRoomTemp">Helyiség hőmérséklete:</label>
 			<input th:field="${data.initRoomTemp}" type="text" id="initRoomTemp" name="initRoomTemp" size="4"

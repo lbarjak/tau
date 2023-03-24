@@ -24,19 +24,19 @@ public class HomeController {
 
     @GetMapping("/")
     public String neu(Model model) {
+        System.out.println("in GET: " + data.getThermalTimeConstant());
         weatherService.weather();
         extracted(model);
         return "index";
     }
 
-    // public String adatok(Model model) {
-    //     extracted(model);
-    //     return "message/list";
-    // }
-
-    @PostMapping("/nemkell")
-    public String dataForm(@ModelAttribute(value = "data") Data data) {
-        return "nemkell";
+    @PostMapping("/")
+    public String dataForm(@ModelAttribute(value = "data") Data data, Model model) {
+        extracted(model);
+        System.out.println("in POST1: " + data.getThermalTimeConstant());
+        weatherService.weather();
+        System.out.println("in POST2: " + data.getThermalTimeConstant());
+        return "index";
     }
 
 }

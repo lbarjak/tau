@@ -13,7 +13,7 @@ public class WeatherService {
 
     Data data = Data.getInstance();
 
-    int thermalTimeConstant = data.getThermalTimeConstant();
+    int thermalTimeConstant;// = data.getThermalTimeConstant();
     String startDateString = data.getStartDate();
     String endDateString = data.getEndDate();
     String startTimeString = data.getStartTime();
@@ -23,6 +23,8 @@ public class WeatherService {
     ArrayList<Temperature> temperatures = data.getTemperatures();
 
     public void weather() {
+        thermalTimeConstant = data.getThermalTimeConstant();
+        System.out.println("in Service: " + thermalTimeConstant);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.");
         LocalDate startDate = LocalDate.parse(startDateString, formatter);
         LocalDate endDate = LocalDate.parse(endDateString, formatter);
