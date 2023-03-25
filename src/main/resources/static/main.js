@@ -100,7 +100,7 @@ let graphIndoor = () => {
         x = i * width / temperatures.length;
         y = (height / yTicks) * (temperatures[i]["roomTemp"] - yTickMin);
         if (colorOn) {
-            color = i <= indexOfMeasuredTemperatures ? "green" : "purple"
+            color = i <= indexOfMeasuredTemperatures ? "blue" : "red"
         }
         drawLine(ctx, [previousX, previousY], [x, y], color, 4)
         if (temperatures[i]["roomTemp"] != null) {
