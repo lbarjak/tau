@@ -9,18 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HomeController {
-    private WeatherService weatherService;
-
-    private Data data = Data.getInstance();
 
     @Autowired
-    public void getWeatherService(WeatherService weatherService) {
-        this.weatherService = weatherService;
-    }
+    private Data data;
+    @Autowired
+    private WeatherService weatherService;
 
     @GetMapping("/")
     public String neu(Model model) {
-        Data.getInstance();
         model.addAttribute("data", data);
         weatherService.weather(data);
         return "index";
@@ -28,7 +24,6 @@ public class HomeController {
 
     @PostMapping("/")
     public String dataForm(@ModelAttribute(value = "data") Data data, Model model) {
-        Data.getInstance();
         model.addAttribute("data", data);
         weatherService.weather(data);
         return "index";

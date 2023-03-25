@@ -4,19 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Data {
-
-    private static Data instance = null;
-
-    private Data() {
-    }
-
-    public static Data getInstance() {
-        if (instance == null)
-            instance = new Data();
-
-        return instance;
-    }
 
     private int thermalTimeConstant = 90;// min. 3.3 max. 122
     private String startDate = "2023.03.18.";
