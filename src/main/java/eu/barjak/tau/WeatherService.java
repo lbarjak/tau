@@ -11,18 +11,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class WeatherService {
 
-    Data data = Data.getInstance();
+    public void weather(Data data) {
+        int thermalTimeConstant = data.getThermalTimeConstant();
+        String startDateString = data.getStartDate();
+        String endDateString = data.getEndDate();
+        String startTimeString = data.getStartTime();
+        Double initRoomTemp = data.getInitRoomTemp();
+        int omszId = data.getOmszId();
+        LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = data.getTemperaturesMap();
+        ArrayList<Temperature> temperatures = data.getTemperatures();
 
-    int thermalTimeConstant = data.getThermalTimeConstant();
-    String startDateString = data.getStartDate();
-    String endDateString = data.getEndDate();
-    String startTimeString = data.getStartTime();
-    Double initRoomTemp = data.getInitRoomTemp();
-    int omszId = data.getOmszId();
-    LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = data.getTemperaturesMap();
-    ArrayList<Temperature> temperatures = data.getTemperatures();
-
-    public void weather() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.");
         LocalDate startDate = LocalDate.parse(startDateString, formatter);
         LocalDate endDate = LocalDate.parse(endDateString, formatter);

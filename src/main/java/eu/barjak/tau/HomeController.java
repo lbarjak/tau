@@ -18,25 +18,20 @@ public class HomeController {
         this.weatherService = weatherService;
     }
 
-    private void extracted(Model model) {
-        model.addAttribute("data", data);
-    }
-
     @GetMapping("/")
     public String neu(Model model) {
-        weatherService.weather();
-        extracted(model);
+        Data.getInstance();
+        model.addAttribute("data", data);
+        weatherService.weather(data);
         return "index";
     }
 
-    // public String adatok(Model model) {
-    //     extracted(model);
-    //     return "message/list";
-    // }
-
-    @PostMapping("/nemkell")
-    public String dataForm(@ModelAttribute(value = "data") Data data) {
-        return "nemkell";
+    @PostMapping("/")
+    public String dataForm(@ModelAttribute(value = "data") Data data, Model model) {
+        Data.getInstance();
+        model.addAttribute("data", data);
+        weatherService.weather(data);
+        return "index";
     }
 
 }
