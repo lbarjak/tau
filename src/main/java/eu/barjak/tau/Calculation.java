@@ -32,7 +32,7 @@ public class Calculation {
         Locale huLoc = new Locale("hu");
         DateTimeFormatter napNeveMagyarul = DateTimeFormatter.ofPattern("EEEE", huLoc);
         String day;
-        Double roomTemp = initialRoomTemperature;
+        Double roomTemp = initialRoomTemperature - correction;
 
         Set<LocalDate> localDates = temperaturesMap.keySet();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.");
