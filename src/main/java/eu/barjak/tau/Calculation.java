@@ -14,12 +14,14 @@ public class Calculation {
     ArrayList<Temperature> temperatures;
     Double exponent;
     Double multiplier;
+    int correction;
 
     Calculation(int thermalTimeConstant, LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap,
-            ArrayList<Temperature> temperatures) {
+            ArrayList<Temperature> temperatures, int correction) {
         this.temperaturesMap = temperaturesMap;
         this.temperatures = temperatures;
         this.multiplier = Math.exp(-(10.0 / 60) / thermalTimeConstant);// (exponent)
+        this.correction = correction;
     }
 
     public Double tau(Double roomTemp) {
@@ -46,7 +48,7 @@ public class Calculation {
         int startTimeIndex = searchStartTimeIndex(startTimeString);
 
         for (int i = startTimeIndex; i < temperatures.size(); i++) {
-            temperatures.get(i).setRoomTemp(roomTemp);
+            temperatures.get(i).setRoomTemp(roomTemp + correction);
             outdoorTemp = temperatures.get(i).getOutdoorTemp();
             if (outdoorTemp != null) {
                 roomTemp = tau(roomTemp);
@@ -84,7 +86,7 @@ public class Calculation {
     public void forecast(int indexOfMeasuredTemperatures, Double last24hAverage) {
         Double roomTemp = temperatures.get(indexOfMeasuredTemperatures - 1).getRoomTemp();
         for (int i = indexOfMeasuredTemperatures; i < temperatures.size(); i++) {
-            temperatures.get(i).setOutdoorTemp(last24hAverage);
+            temperatures.get(i).setOutdoorTemp(last24hAverage + correction);
             temperatures.get(i).setRoomTemp(roomTemp);
             outdoorTemp = temperatures.get(i).getOutdoorTemp();
             if (outdoorTemp != null) {

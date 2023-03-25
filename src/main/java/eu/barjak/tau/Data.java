@@ -15,9 +15,18 @@ public class Data {
     private String startTime = "16:50";
     private Double initRoomTemp = 18d;
     private int omszId = 590; // MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
+    private int correction = 0;
     private LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = new LinkedHashMap<>();
     private ArrayList<Temperature> temperatures = new ArrayList<>();
     private int indexOfMeasuredTemperatures;
+
+    public int getCorrection() {
+        return this.correction;
+    }
+
+    public void setCorrection(int correction) {
+        this.correction = correction;
+    }
 
     public int getThermalTimeConstant() {
         return this.thermalTimeConstant;

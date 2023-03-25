@@ -18,6 +18,7 @@ public class WeatherService {
         String startTimeString = data.getStartTime();
         Double initRoomTemp = data.getInitRoomTemp();
         int omszId = data.getOmszId();
+        int correction = data.getCorrection();
         LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = data.getTemperaturesMap();
         ArrayList<Temperature> temperatures = data.getTemperatures();
 
@@ -38,7 +39,7 @@ public class WeatherService {
         int indexOfMeasuredTemperatures = weatherQuery.steps();
 
         if (indexOfMeasuredTemperatures > 0) {
-            Calculation calculation = new Calculation(thermalTimeConstant, temperaturesMap, temperatures);
+            Calculation calculation = new Calculation(thermalTimeConstant, temperaturesMap, temperatures, correction);
             calculation.calculation(startTimeString, initRoomTemp);
             if (indexOfMeasuredTemperatures > 144) {
                 Double last24hAverage = calculation.last24hAverage(indexOfMeasuredTemperatures);
