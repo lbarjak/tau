@@ -6,14 +6,14 @@ let graph = document.getElementsByTagName('canvas')[0]
 let drawLine = (ctx, begin, end, stroke = 'black', width = 1) => {
     ctx.save()
     if (stroke) {
-        ctx.strokeStyle = stroke;
+        ctx.strokeStyle = stroke
     }
     if (width) {
-        ctx.lineWidth = width;
+        ctx.lineWidth = width
     }
-    ctx.beginPath();
-    ctx.moveTo(...begin);
-    ctx.lineTo(...end);
+    ctx.beginPath()
+    ctx.moveTo(...begin)
+    ctx.lineTo(...end)
     ctx.stroke();
     ctx.restore()
 }
@@ -89,38 +89,38 @@ yTicks = () => {
 }
 
 let graphIndoor = () => {
-    let previousX;
-    let previousY;
-    let x;
-    let y;
-    let colorOn = false;
+    let previousX
+    let previousY
+    let x
+    let y
+    let colorOn = false
     let color
-    color = "rgba(0, 0, 0, 0)";
+    color = "rgba(0, 0, 0, 0)"
     for (let i = 0; i < temperatures.length; i++) {
-        x = i * width / temperatures.length;
-        y = (height / yTicks) * (temperatures[i]["roomTemp"] - yTickMin);
+        x = i * width / temperatures.length
+        y = (height / yTicks) * (temperatures[i]["roomTemp"] - yTickMin)
         if (colorOn) {
             color = i <= indexOfMeasuredTemperatures ? "blue" : "red"
         }
         drawLine(ctx, [previousX, previousY], [x, y], color, 4)
         if (temperatures[i]["roomTemp"] != null) {
-            colorOn = true;
+            colorOn = true
         }
-        previousX = x;
-        previousY = y;
+        previousX = x
+        previousY = y
     }
 }
 
 let graphOutdoor = () => {
-    let color;
+    let color
     let colorSwitch = true
     let previousX = 0
-    let previousY = (height / yTicks) * (temperatures[0]["outdoorTemp"] - yTickMin);
+    let previousY = (height / yTicks) * (temperatures[0]["outdoorTemp"] - yTickMin)
     let x
     let y
     for (let i = 0; i < temperatures.length; i++) {
         x = i * width / temperatures.length
-        y = (height / yTicks) * (temperatures[i]["outdoorTemp"] - yTickMin);
+        y = (height / yTicks) * (temperatures[i]["outdoorTemp"] - yTickMin)
         colorSwitch = true
         if (temperatures[i]["outdoorTemp"] == null) {
             color = "rgba(0, 0, 0, 0)"
@@ -130,8 +130,8 @@ let graphOutdoor = () => {
         if (colorSwitch) {
             color = "navy"
         }
-        previousX = x;
-        previousY = y;
+        previousX = x
+        previousY = y
     }
 }
 
