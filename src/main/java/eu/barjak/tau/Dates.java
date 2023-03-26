@@ -1,12 +1,9 @@
 package eu.barjak.tau;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedHashMap;
 
 public class Dates {
@@ -18,7 +15,7 @@ public class Dates {
         this.temperaturesMap = temperaturesMap;
     }
 
-    public void elapsedDays(LocalDate startDate, LocalDate endDate) throws ParseException {
+    public void elapsedDays(LocalDate startDate, LocalDate endDate) {
         LocalDate tmpDate;
         long elapsed = Period.between(startDate, endDate).getDays();
         for (int i = 0; i <= elapsed; i++) {
@@ -31,17 +28,13 @@ public class Dates {
         }
     }
 
-    public void addTimes(LocalDate actualDate) throws ParseException {
-        String initTime = "23:50";
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        Date d = sdf.parse(initTime);
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(d);
+    public void addTimes(LocalDate actualDate) {
+        LocalTime newTime = LocalTime.parse("23:50");
         for (int i = 0; i < 144; i++) {
             temperaturesMap.get(actualDate).add(new Temperature());
-            cal.add(Calendar.MINUTE, 10);
-            String newTime = sdf.format(cal.getTime());
-            temperaturesMap.get(actualDate).get(i).setTime(newTime);
+            newTime = newTime.plusMinutes(10);
+            temperaturesMap.get(actualDate).get(i).setTime(newTime.toString());
         }
     }
+
 }

@@ -29,11 +29,7 @@ public class WeatherService {
         temperatures.clear();
 
         Dates dates = new Dates(temperaturesMap);
-        try {
-            dates.elapsedDays(startDate, endDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        dates.elapsedDays(startDate, endDate);
 
         WeatherQuery weatherQuery = new WeatherQuery(omszId, temperaturesMap);
         int indexOfMeasuredTemperatures = weatherQuery.steps();
