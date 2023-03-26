@@ -1,7 +1,10 @@
 package eu.barjak.tau;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -45,8 +48,8 @@ public class Calculation {
             }
         }
 
-        int startTimeIndex = searchStartTimeIndex(startTimeString);
-
+        LocalTime startTime = LocalTime.parse(startTimeString);
+        int startTimeIndex = (startTime.getHour() * 60 + startTime.getMinute()) / 10;
         for (int i = startTimeIndex; i < temperatures.size(); i++) {
             temperatures.get(i).setRoomTemp(roomTemp + correction);
             outdoorTemp = temperatures.get(i).getOutdoorTemp();
@@ -54,18 +57,6 @@ public class Calculation {
                 roomTemp = tau(roomTemp);
             }
         }
-    }
-
-    public int searchStartTimeIndex(String startTimeString) {
-        String timeString;
-        int startTimeIndex = 0;
-        for (int i = 0; i < 144; i++) {
-            timeString = temperatures.get(i).getTime();
-            if (timeString.equals(startTimeString)) {
-                startTimeIndex = i;
-            }
-        }
-        return startTimeIndex;
     }
 
     public Double last24hAverage(int indexOfMeasuredTemperatures) {
