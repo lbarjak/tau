@@ -1,21 +1,18 @@
 package eu.barjak.tau;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Data {
 
     private int thermalTimeConstant = 90;// min. 3.3 max. 122
-    private String startDate = "2023.03.18.";
-    private String endDate = "2023.03.26.";
-    private String startTime = "16:50";
     private Double initRoomTemp = 18d;
     private int omszId = 590; // MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
+    private String startDate = "2023.03.18.";
+    private String startTime = "16:50";
+    private String endDate = "2023.03.26.";
     private int correction = 0;
-    private Map<LocalDate, List<Temperature>> temperaturesMap = new LinkedHashMap<>();
+
     private List<Temperature> temperatures = new ArrayList<>();
     private int indexOfMeasuredTemperatures;
 
@@ -73,14 +70,6 @@ public class Data {
 
     public void setOmszId(int omszId) {
         this.omszId = omszId;
-    }
-
-    public Map<LocalDate, List<Temperature>> getTemperaturesMap() {
-        return this.temperaturesMap;
-    }
-
-    public void setTemperaturesMap(Map<LocalDate, List<Temperature>> temperaturesMap) {
-        this.temperaturesMap = temperaturesMap;
     }
 
     public List<Temperature> getTemperatures() {

@@ -2,6 +2,7 @@ package eu.barjak.tau;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,14 +13,15 @@ public class WeatherService {
 
     public void weather(Data data) {
         int thermalTimeConstant = data.getThermalTimeConstant();
-        String startDateString = data.getStartDate();
-        String endDateString = data.getEndDate();
-        String startTimeString = data.getStartTime();
         Double initRoomTemp = data.getInitRoomTemp();
         int omszId = data.getOmszId();
+        String startDateString = data.getStartDate();
+        String startTimeString = data.getStartTime();
+        String endDateString = data.getEndDate();
         int correction = data.getCorrection();
-        Map<LocalDate, List<Temperature>> temperaturesMap = data.getTemperaturesMap();
         List<Temperature> temperatures = data.getTemperatures();
+
+        Map<LocalDate, List<Temperature>> temperaturesMap = new LinkedHashMap<>();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.");
         LocalDate startDate = LocalDate.parse(startDateString, formatter);
