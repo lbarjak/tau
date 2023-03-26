@@ -4,14 +4,15 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Dates {
 
-    private final ArrayList<LocalDate> localdates = new ArrayList<>();
-    private Map<LocalDate, ArrayList<Temperature>> temperaturesMap;
+    private final List<LocalDate> localdates = new ArrayList<>();
+    private Map<LocalDate, List<Temperature>> temperaturesMap;
 
-    Dates(Map<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+    Dates(Map<LocalDate, List<Temperature>> temperaturesMap) {
         this.temperaturesMap = temperaturesMap;
     }
 

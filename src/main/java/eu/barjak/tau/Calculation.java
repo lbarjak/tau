@@ -2,7 +2,6 @@ package eu.barjak.tau;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -11,13 +10,13 @@ import java.util.Set;
 public class Calculation {
     Double thermalTimeConstant;
     Double outdoorTemp;
-    Map<LocalDate, ArrayList<Temperature>> temperaturesMap;
+    Map<LocalDate, List<Temperature>> temperaturesMap;
     List<Temperature> temperatures;
     Double exponent;
     Double multiplier;
     int correction;
 
-    Calculation(int thermalTimeConstant, Map<LocalDate, ArrayList<Temperature>> temperaturesMap,
+    Calculation(int thermalTimeConstant, Map<LocalDate, List<Temperature>> temperaturesMap,
             List<Temperature> temperatures, int correction) {
         this.temperaturesMap = temperaturesMap;
         this.temperatures = temperatures;

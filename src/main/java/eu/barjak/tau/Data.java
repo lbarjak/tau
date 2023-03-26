@@ -15,7 +15,7 @@ public class Data {
     private Double initRoomTemp = 18d;
     private int omszId = 590; // MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
     private int correction = 0;
-    private Map<LocalDate, ArrayList<Temperature>> temperaturesMap = new LinkedHashMap<>();
+    private Map<LocalDate, List<Temperature>> temperaturesMap = new LinkedHashMap<>();
     private List<Temperature> temperatures = new ArrayList<>();
     private int indexOfMeasuredTemperatures;
 
@@ -75,11 +75,11 @@ public class Data {
         this.omszId = omszId;
     }
 
-    public Map<LocalDate, ArrayList<Temperature>> getTemperaturesMap() {
+    public Map<LocalDate, List<Temperature>> getTemperaturesMap() {
         return this.temperaturesMap;
     }
 
-    public void setTemperaturesMap(Map<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+    public void setTemperaturesMap(Map<LocalDate, List<Temperature>> temperaturesMap) {
         this.temperaturesMap = temperaturesMap;
     }
 

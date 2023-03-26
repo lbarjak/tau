@@ -7,6 +7,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -17,10 +18,10 @@ import java.util.regex.Pattern;
 public class WeatherQuery {
     int omszId;
     int indexOfMeasuredTemperatures = 0;
-    Map<LocalDate, ArrayList<Temperature>> temperaturesMap;
+    Map<LocalDate, List<Temperature>> temperaturesMap;
     private Logger logger = Logger.getLogger(WeatherQuery.class.getName());
 
-    public WeatherQuery(int omszId, Map<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+    public WeatherQuery(int omszId, Map<LocalDate, List<Temperature>> temperaturesMap) {
         this.temperaturesMap = temperaturesMap;
         this.omszId = omszId;
     }
@@ -65,7 +66,7 @@ public class WeatherQuery {
 
     public void processing(String inputLine, LocalDate actualDate) {
         String outdoorTemperatureString;
-        ArrayList<String> outdoorTemperatureList;
+        List<String> outdoorTemperatureList;
         Double outdoorTemperature;
         Pattern pattern = Pattern.compile("(?<=\\[).+(?=\\])");// a grafikon hőmérsékletértékei
         Matcher matcher = pattern.matcher(inputLine);
