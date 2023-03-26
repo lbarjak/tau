@@ -112,14 +112,24 @@ let graphIndoor = () => {
 }
 
 let graphOutdoor = () => {
-    let previousX = 0;
+    let color;
+    let colorSwitch = true
+    let previousX = 0
     let previousY = (height / yTicks) * (temperatures[0]["outdoorTemp"] - yTickMin);
-    let x;
-    let y;
+    let x
+    let y
     for (let i = 0; i < temperatures.length; i++) {
-        x = i * width / temperatures.length;
+        x = i * width / temperatures.length
         y = (height / yTicks) * (temperatures[i]["outdoorTemp"] - yTickMin);
-        drawLine(ctx, [previousX, previousY], [x, y], "navy", 3)
+        colorSwitch = true
+        if (temperatures[i]["outdoorTemp"] == null) {
+            color = "rgba(0, 0, 0, 0)"
+            colorSwitch = false
+        }
+        drawLine(ctx, [previousX, previousY], [x, y], color, 3)
+        if (colorSwitch) {
+            color = "navy"
+        }
         previousX = x;
         previousY = y;
     }
