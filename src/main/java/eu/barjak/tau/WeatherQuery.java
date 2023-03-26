@@ -7,17 +7,20 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WeatherQuery {
     int omszId;
     int indexOfMeasuredTemperatures = 0;
-    LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap;
+    Map<LocalDate, ArrayList<Temperature>> temperaturesMap;
+    private Logger logger = Logger.getLogger(WeatherQuery.class.getName());
 
-    public WeatherQuery(int omszId, LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+    public WeatherQuery(int omszId, Map<LocalDate, ArrayList<Temperature>> temperaturesMap) {
         this.temperaturesMap = temperaturesMap;
         this.omszId = omszId;
     }
@@ -35,7 +38,7 @@ public class WeatherQuery {
             }
         }
         if (indexOfMeasuredTemperatures % 144 == 0) {
-            System.out.println(today + ": nincs még mai adat");
+            logger.log(Level.INFO, today + ": nincs még mai adat");
         }
         return indexOfMeasuredTemperatures;
     }
@@ -50,7 +53,7 @@ public class WeatherQuery {
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
                 if (inputLine.contains("data: [")) {
-                    System.out.println(actualDate + ": adatok feldolgozása...");
+                    logger.log(Level.INFO, actualDate + ": adatok feldolgozása...");
                     processing(inputLine, actualDate);
                     break;
                 }

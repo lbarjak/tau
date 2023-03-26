@@ -3,7 +3,8 @@ package eu.barjak.tau;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,8 @@ public class WeatherService {
         Double initRoomTemp = data.getInitRoomTemp();
         int omszId = data.getOmszId();
         int correction = data.getCorrection();
-        LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = data.getTemperaturesMap();
-        ArrayList<Temperature> temperatures = data.getTemperatures();
+        Map<LocalDate, ArrayList<Temperature>> temperaturesMap = data.getTemperaturesMap();
+        List<Temperature> temperatures = data.getTemperatures();
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.");
         LocalDate startDate = LocalDate.parse(startDateString, formatter);

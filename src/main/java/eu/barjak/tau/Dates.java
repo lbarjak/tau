@@ -4,14 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Dates {
 
     private final ArrayList<LocalDate> localdates = new ArrayList<>();
-    private LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap;
+    private Map<LocalDate, ArrayList<Temperature>> temperaturesMap;
 
-    Dates(LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+    Dates(Map<LocalDate, ArrayList<Temperature>> temperaturesMap) {
         this.temperaturesMap = temperaturesMap;
     }
 

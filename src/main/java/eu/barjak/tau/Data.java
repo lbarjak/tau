@@ -3,6 +3,8 @@ package eu.barjak.tau;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Data {
 
@@ -13,8 +15,8 @@ public class Data {
     private Double initRoomTemp = 18d;
     private int omszId = 590; // MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
     private int correction = 0;
-    private LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap = new LinkedHashMap<>();
-    private ArrayList<Temperature> temperatures = new ArrayList<>();
+    private Map<LocalDate, ArrayList<Temperature>> temperaturesMap = new LinkedHashMap<>();
+    private List<Temperature> temperatures = new ArrayList<>();
     private int indexOfMeasuredTemperatures;
 
     public int getCorrection() {
@@ -73,19 +75,19 @@ public class Data {
         this.omszId = omszId;
     }
 
-    public LinkedHashMap<LocalDate, ArrayList<Temperature>> getTemperaturesMap() {
+    public Map<LocalDate, ArrayList<Temperature>> getTemperaturesMap() {
         return this.temperaturesMap;
     }
 
-    public void setTemperaturesMap(LinkedHashMap<LocalDate, ArrayList<Temperature>> temperaturesMap) {
+    public void setTemperaturesMap(Map<LocalDate, ArrayList<Temperature>> temperaturesMap) {
         this.temperaturesMap = temperaturesMap;
     }
 
-    public ArrayList<Temperature> getTemperatures() {
+    public List<Temperature> getTemperatures() {
         return this.temperatures;
     }
 
-    public void setTemperatures(ArrayList<Temperature> temperatures) {
+    public void setTemperatures(List<Temperature> temperatures) {
         this.temperatures = temperatures;
     }
 
