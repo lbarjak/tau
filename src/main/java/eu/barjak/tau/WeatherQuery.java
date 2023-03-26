@@ -38,7 +38,7 @@ public class WeatherQuery {
             }
         }
         if (indexOfMeasuredTemperatures % 144 == 0) {
-            logger.log(Level.INFO, today + ": nincs még mai adat");
+            logger.log(Level.INFO, "{0}: nincs még mai adat", today);
         }
         return indexOfMeasuredTemperatures;
     }
@@ -53,7 +53,7 @@ public class WeatherQuery {
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
                 if (inputLine.contains("data: [")) {
-                    logger.log(Level.INFO, actualDate + ": adatok feldolgozása...");
+                    logger.log(Level.INFO, "{0}: adatok feldolgozása...", actualDate);
                     processing(inputLine, actualDate);
                     break;
                 }
