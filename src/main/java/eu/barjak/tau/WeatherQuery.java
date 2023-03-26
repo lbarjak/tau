@@ -77,7 +77,7 @@ public class WeatherQuery {
             if (!outdoorTemperatureList.get(i).equals("null")) {
                 outdoorTemperature = Double.parseDouble(outdoorTemperatureList.get(i));
                 temperaturesMap.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
-                indexOfMeasuredTemperatures++;
+                indexOfMeasuredTemperatures = i;
             }
         }
     }
