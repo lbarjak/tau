@@ -41,7 +41,7 @@ public class WeatherQuery {
         if (indexOfMeasuredTemperatures % 144 == 0) {
             logger.log(Level.INFO, "{0}: nincs még mai adat", today);
         }
-        return indexOfMeasuredTemperatures;
+        return indexOfMeasuredTemperatures - 139;
     }
 
     public void query(LocalDate actualDate) throws IOException {
@@ -77,8 +77,8 @@ public class WeatherQuery {
             if (!outdoorTemperatureList.get(i).equals("null")) {
                 outdoorTemperature = Double.parseDouble(outdoorTemperatureList.get(i));
                 temperaturesMap.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
-                indexOfMeasuredTemperatures = i;
             }
+            indexOfMeasuredTemperatures++;
         }
     }
 
