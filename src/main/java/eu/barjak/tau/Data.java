@@ -4,9 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Data {
 
     private int thermalTimeConstant = 90;// min. 3.3 max. 122

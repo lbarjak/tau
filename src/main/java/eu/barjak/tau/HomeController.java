@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 
     @Autowired
-    private Data data;
-    @Autowired
     private WeatherService weatherService;
 
     @RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
