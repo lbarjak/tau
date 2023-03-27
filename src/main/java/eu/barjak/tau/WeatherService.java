@@ -50,10 +50,10 @@ public class WeatherService {
     }
 
     public int indexOfMeasuredTemps(String startDateString) {
-        startDateString = startDateString.replaceAll("\\.", "-").replaceAll("-$", "");
-        LocalDate startDate = LocalDate.parse(startDateString);
-        LocalTime nullTime = LocalTime.parse("00:00");
-        LocalDateTime startDateTime = LocalDateTime.of(startDate, nullTime);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.");
+        LocalDate startDate = LocalDate.parse(startDateString, formatter);
+        LocalTime zeroTime = LocalTime.parse("00:00");
+        LocalDateTime startDateTime = LocalDateTime.of(startDate, zeroTime);
         LocalDateTime now = LocalDateTime.now();
         Duration duration = Duration.between(startDateTime, now);
         return (int) (duration.toMinutes() / 10);
