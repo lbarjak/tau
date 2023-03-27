@@ -28,6 +28,7 @@ public class Data {
     private ArrayList<Temperature> temperatures = new ArrayList<>();
     private int indexOfMeasuredTemperatures;
 
+    //Ezt a rengeteg triviális gettert lombok-al meg lehet spórolni.
     public int getThermalTimeConstant() {
         return this.thermalTimeConstant;
     }
