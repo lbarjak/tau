@@ -2,9 +2,7 @@ package eu.barjak.tau;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,6 +14,7 @@ public class Calculation {
     Double exponent;
     Double multiplier;
     int correction;
+    int startTimeIndex;
 
     Calculation(int thermalTimeConstant, Map<LocalDate, List<Temperature>> temperaturesMap,
             List<Temperature> temperatures, int correction) {
@@ -29,25 +28,20 @@ public class Calculation {
         return outdoorTemp + (roomTemp - outdoorTemp) * multiplier;
     }
 
-    public void calculation(String startTimeString, Double initialRoomTemperature) {
-        Locale huLoc = new Locale("hu");
-        DateTimeFormatter napNeveMagyarul = DateTimeFormatter.ofPattern("EEEE", huLoc);
-        String day;
+    public int calculation(String startTimeString, Double initialRoomTemperature) {
+
         Double roomTemp = initialRoomTemperature - correction;
 
         Set<LocalDate> localDates = temperaturesMap.keySet();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.");
         for (LocalDate localDate : localDates) {
             for (Temperature temperature : temperaturesMap.get(localDate)) {
                 temperatures.add(temperature);
-                temperature.setDate(formatter.format(localDate));
-                day = localDate.format(napNeveMagyarul);
-                temperature.setDay(day);
             }
         }
 
         LocalTime startTime = LocalTime.parse(startTimeString);
-        int startTimeIndex = (startTime.getHour() * 60 + startTime.getMinute()) / 10;
+        startTimeIndex = (startTime.getHour() * 60 + startTime.getMinute()) / 10;
+
         for (int i = startTimeIndex; i < temperatures.size(); i++) {
             temperatures.get(i).setRoomTemp(roomTemp + correction);
             outdoorTemp = temperatures.get(i).getOutdoorTemp();
@@ -55,6 +49,7 @@ public class Calculation {
                 roomTemp = tau(roomTemp);
             }
         }
+        return startTimeIndex;
     }
 
     public Double last24hAverage(int indexOfMeasuredTemperatures) {

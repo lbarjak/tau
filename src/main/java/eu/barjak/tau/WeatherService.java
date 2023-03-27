@@ -37,7 +37,8 @@ public class WeatherService {
 
         if (indexOfMeasuredTemperatures > 0) {
             Calculation calculation = new Calculation(thermalTimeConstant, temperaturesMap, temperatures, correction);
-            calculation.calculation(startTimeString, initRoomTemp);
+            int startTimeIndex = calculation.calculation(startTimeString, initRoomTemp);
+            indexOfMeasuredTemperatures = indexOfMeasuredTemperatures - (144 - startTimeIndex);
             if (indexOfMeasuredTemperatures > 144) {
                 Double last24hAverage = calculation.last24hAverage(indexOfMeasuredTemperatures);
                 calculation.forecast(indexOfMeasuredTemperatures, last24hAverage);

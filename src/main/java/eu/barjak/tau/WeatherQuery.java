@@ -38,10 +38,7 @@ public class WeatherQuery {
                 }
             }
         }
-        if (indexOfMeasuredTemperatures % 144 == 0) {
-            logger.log(Level.INFO, "{0}: nincs még mai adat", today);
-        }
-        return indexOfMeasuredTemperatures - 139;
+        return indexOfMeasuredTemperatures;
     }
 
     public void query(LocalDate actualDate) throws IOException {
