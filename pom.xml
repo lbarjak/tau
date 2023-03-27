@@ -56,6 +56,12 @@
 			<artifactId>android-luni</artifactId>
 			<version>4.1.2_r1_rc</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 
 	<build>
