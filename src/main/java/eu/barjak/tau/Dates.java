@@ -9,6 +9,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 
+//Ha valamilyen lineárisabb időreprezentációt használsz (pl. unixtime), akkor ennek a mágiának
+// a nagy része megspórólható, a UI-ban kezelhető.
 public class Dates {
 
     private final ArrayList<LocalDate> localdates = new ArrayList<>();
