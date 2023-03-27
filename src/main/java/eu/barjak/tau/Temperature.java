@@ -8,6 +8,7 @@ public class Temperature {
     private Double outdoorTemp;
     private Double roomTemp;
 
+    //lombokkal megsprórólhatóak a getterek
     public String getDate() {
         return date;
     }
