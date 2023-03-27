@@ -1,3 +1,5 @@
+// A TypeScript erősen típusos, sokat tud segíteni a problémák feltárásában, refaktorban
+// Rengeteg a globális konstans, függvény itt.
 let indexOfMeasuredTemperatures = data.indexOfMeasuredTemperatures
 let temperatures = data.temperatures
 
@@ -124,7 +126,7 @@ let graphOutdoor = () => {
         previousY = y;
     }
 }
-
+// az összes fentit külön modulokba raknám.
 xTicks()
 yTicks()
 graphOutdoor()
