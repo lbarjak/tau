@@ -27,6 +27,7 @@ public class Calculation {
     }
 
     public void calculation(String startTimeString, Double initialRoomTemperature) {
+        // A lokalizáció nem a backend dolga, és ha valamiért indokolt is lenne ott csinálni, akkor is jó elkülöníteni a számításoktól.
         Locale huLoc = new Locale("hu");
         DateTimeFormatter napNeveMagyarul = DateTimeFormatter.ofPattern("EEEE", huLoc);
         String day;
