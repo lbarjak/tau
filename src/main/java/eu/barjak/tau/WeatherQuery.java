@@ -17,7 +17,6 @@ import java.util.regex.Pattern;
 
 public class WeatherQuery {
     int omszId;
-    int indexOfMeasuredTemperatures = 0;
     Map<LocalDate, List<Temperature>> temperaturesMap;
     private Logger logger = Logger.getLogger(WeatherQuery.class.getName());
 
@@ -26,7 +25,7 @@ public class WeatherQuery {
         this.omszId = omszId;
     }
 
-    public int steps() {
+    public void steps() {
         LocalDate today = LocalDate.now();
         Set<LocalDate> localDates = temperaturesMap.keySet();
         for (LocalDate localDate : localDates) {
@@ -38,7 +37,6 @@ public class WeatherQuery {
                 }
             }
         }
-        return indexOfMeasuredTemperatures;
     }
 
     public void query(LocalDate actualDate) throws IOException {
@@ -75,7 +73,6 @@ public class WeatherQuery {
                 outdoorTemperature = Double.parseDouble(outdoorTemperatureList.get(i));
                 temperaturesMap.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
             }
-            indexOfMeasuredTemperatures++;
         }
     }
 

@@ -28,7 +28,7 @@ public class Calculation {
         return outdoorTemp + (roomTemp - outdoorTemp) * multiplier;
     }
 
-    public int calculation(String startTimeString, Double initialRoomTemperature) {
+    public void calculation(String startTimeString, Double initialRoomTemperature) {
 
         Double roomTemp = initialRoomTemperature - correction;
 
@@ -49,7 +49,6 @@ public class Calculation {
                 roomTemp = tau(roomTemp);
             }
         }
-        return startTimeIndex;
     }
 
     public Double last24hAverage(int indexOfMeasuredTemperatures) {
