@@ -56,6 +56,8 @@ public class WeatherService {
         LocalDateTime startDateTime = LocalDateTime.of(startDate, zeroTime);
         LocalDateTime now = LocalDateTime.now();
         Duration duration = Duration.between(startDateTime, now);
-        return (int) (duration.toMinutes() / 10);
+        int index = (int) duration.toMinutes() / 10;
+        index = index - index % 5;
+        return index;
     }
 }
