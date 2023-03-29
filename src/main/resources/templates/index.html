@@ -99,8 +99,19 @@
 	</div>
 
 	<canvas></canvas>
+	<script>
+		let graph = document.getElementsByTagName('canvas')[0]
+		window.ctx = graph.getContext('2d')
+		graph.height = window.innerHeight
+		graph.width = window.innerWidth
+		let width = graph.width
+		let height = graph.height
+		let fontSize = Math.round(height / 40)
+	</script>
 	<script type="module">
 		import Main from './Main.js'
+		import Graphs from './Graphs.js'
 		new Main().main()
+		new Graphs()
 	</script>
 </body>
