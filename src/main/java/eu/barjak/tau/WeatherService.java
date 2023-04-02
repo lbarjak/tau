@@ -22,7 +22,7 @@ public class WeatherService {
         String endDateString = data.getEndDate();
         int correction = data.getCorrection();
         List<Temperature> temperatures = data.getTemperatures();
-        int indexOfMeasuredTemperatures = indexOfMeasuredTemps(startDateString);
+        int indexOfMeasuredTemperatures = indexOfMeasuredTemps(startDateString, endDateString);
 
         Map<LocalDate, List<Temperature>> temperaturesMap = new LinkedHashMap<>();
 
@@ -49,13 +49,23 @@ public class WeatherService {
         data.setIndexOfMeasuredTemperatures(indexOfMeasuredTemperatures);
     }
 
-    public int indexOfMeasuredTemps(String startDateString) {
+    public int indexOfMeasuredTemps(String startDateString, String endDateString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.");
+        LocalDateTime now = LocalDateTime.now();
+
+        LocalDate endDate = LocalDate.parse(endDateString, formatter);
+        LocalTime endTime = LocalTime.parse("23:59");
+        LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
+
+        if (endDateTime.isBefore(now)) {
+            now = endDateTime;
+        }
+
         LocalDate startDate = LocalDate.parse(startDateString, formatter);
         LocalTime zeroTime = LocalTime.parse("00:00");
         LocalDateTime startDateTime = LocalDateTime.of(startDate, zeroTime);
-        LocalDateTime now = LocalDateTime.now();
         Duration duration = Duration.between(startDateTime, now);
+
         int index = (int) duration.toMinutes() / 10;
         index = index - index % 5;
         return index;
