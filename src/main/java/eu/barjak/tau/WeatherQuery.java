@@ -37,11 +37,6 @@ public class WeatherQuery {
                 }
             }
         }
-        try {
-            queryForecast();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void query(LocalDate actualDate) throws IOException {
@@ -64,25 +59,6 @@ public class WeatherQuery {
         }
     }
 
-    public void queryForecast() throws IOException {
-        URL urlForecast = new URL(
-                "https://www.metnet.hu/szamitogepes-elorejelzes?type=1&city=Velence&day=0");
-        BufferedReader inForecast;
-        inForecast = new BufferedReader(new InputStreamReader(urlForecast.openStream()));
-        try {
-            String inputLine;
-            while ((inputLine = inForecast.readLine()) != null) {
-                if (inputLine.contains("data: [")) {
-                    logger.log(Level.INFO, "előrejelzés adatok feldolgozása...");
-                    processingForecast(inputLine);
-                    break;
-                }
-            }
-        } finally {
-            inForecast.close();
-        }
-    }
-
     public void processing(String inputLine, LocalDate actualDate) {
         String outdoorTemperatureString;
         List<String> outdoorTemperatureList;
@@ -96,24 +72,6 @@ public class WeatherQuery {
             if (!outdoorTemperatureList.get(i).equals("null")) {
                 outdoorTemperature = Double.parseDouble(outdoorTemperatureList.get(i));
                 temperaturesMap.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
-            }
-        }
-    }
-
-    public void processingForecast(String inputLine) {
-        String outdoorForecastTemperatureString;
-        List<String> outdoorForecastTemperatureList;
-        Double outdoorForecastTemperature;
-        Pattern pattern = Pattern.compile("(?<=\\[).+(?=\\])");
-        Matcher matcher = pattern.matcher(inputLine);
-        matcher.find();
-        outdoorForecastTemperatureString = matcher.group();
-        outdoorForecastTemperatureList = new ArrayList<>(Arrays.asList(outdoorForecastTemperatureString.split(",")));
-        for (int i = 0; i < outdoorForecastTemperatureList.size(); i++) {
-            if (!outdoorForecastTemperatureList.get(i).equals("null")) {
-                outdoorForecastTemperature = Double
-                        .parseDouble(outdoorForecastTemperatureList.get(i).replaceAll("\"", ""));
-                // temperaturesMap.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
             }
         }
     }

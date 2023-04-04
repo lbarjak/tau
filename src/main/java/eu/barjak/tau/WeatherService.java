@@ -7,13 +7,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.IOException;
 import java.time.Duration;
 import org.springframework.stereotype.Service;
 
 @Service
 public class WeatherService {
 
-    public void weather(Data data) {
+    public void weather(Data data) throws IOException {
         int thermalTimeConstant = data.getThermalTimeConstant();
         Double initRoomTemp = data.getInitRoomTemp();
         int omszId = data.getOmszId();
@@ -41,12 +42,16 @@ public class WeatherService {
         if (indexOfMeasuredTemperatures > 0) {
             Calculation calculation = new Calculation(thermalTimeConstant, temperaturesMap, temperatures, correction);
             calculation.calculation(startTimeString, initRoomTemp);
+
             if (indexOfMeasuredTemperatures > 144) {
                 Double last24hAverage = calculation.last24hAverage(indexOfMeasuredTemperatures);
                 calculation.forecast(indexOfMeasuredTemperatures, last24hAverage);
             }
         }
         data.setIndexOfMeasuredTemperatures(indexOfMeasuredTemperatures);
+
+        ForecastQuery forecastQuery = new ForecastQuery();
+        forecastQuery.queryForecast();
     }
 
     public int indexOfMeasuredTemps(String startDateString, String endDateString) {
@@ -66,8 +71,8 @@ public class WeatherService {
         LocalDateTime startDateTime = LocalDateTime.of(startDate, zeroTime);
         Duration duration = Duration.between(startDateTime, now);
 
-        int index = (int) duration.toMinutes() / 10;
-        index = index - index % 5;
-        return index;
+        int indexOfMeasuredTemperatures = (int) duration.toMinutes() / 10;
+        indexOfMeasuredTemperatures = indexOfMeasuredTemperatures - indexOfMeasuredTemperatures % 5;
+        return indexOfMeasuredTemperatures - 1;
     }
 }

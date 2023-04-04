@@ -1,5 +1,7 @@
 package eu.barjak.tau;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,7 @@ public class HomeController {
     private WeatherService weatherService;
 
     @RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
-    public String dataForm(@ModelAttribute(value = "data") Data data, Model model) {
+    public String dataForm(@ModelAttribute(value = "data") Data data, Model model) throws IOException {
         model.addAttribute("data", data);
         weatherService.weather(data);
         return "index";

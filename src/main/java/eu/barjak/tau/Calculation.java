@@ -69,7 +69,9 @@ public class Calculation {
     public void forecast(int indexOfMeasuredTemperatures, Double last24hAverage) {
         Double roomTemp = temperatures.get(indexOfMeasuredTemperatures - 1).getRoomTemp();
         for (int i = indexOfMeasuredTemperatures; i < temperatures.size(); i++) {
+
             temperatures.get(i).setOutdoorTemp(last24hAverage + correction);
+
             temperatures.get(i).setRoomTemp(roomTemp);
             outdoorTemp = temperatures.get(i).getOutdoorTemp();
             if (outdoorTemp != null) {
