@@ -109,15 +109,13 @@ public class WeatherQuery {
         matcher.find();
         outdoorForecastTemperatureString = matcher.group();
         outdoorForecastTemperatureList = new ArrayList<>(Arrays.asList(outdoorForecastTemperatureString.split(",")));
-        System.out.println(outdoorForecastTemperatureList);
-        // for (int i = 0; i < outdoorForecastTemperatureList.size(); i++) {
-        // if (!outdoorForecastTemperatureList.get(i).equals("null")) {
-        // outdoorForecastTemperature =
-        // Double.parseDouble(outdoorForecastTemperatureList.get(i));
-        // // temperaturesMap.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
-        // System.out.println(outdoorForecastTemperature);
-        // }
-        // }
+        for (int i = 0; i < outdoorForecastTemperatureList.size(); i++) {
+            if (!outdoorForecastTemperatureList.get(i).equals("null")) {
+                outdoorForecastTemperature = Double
+                        .parseDouble(outdoorForecastTemperatureList.get(i).replaceAll("\"", ""));
+                // temperaturesMap.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
+            }
+        }
     }
 
 }
