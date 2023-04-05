@@ -24,6 +24,7 @@ public class WeatherService {
         int correction = data.getCorrection();
         List<Temperature> temperatures = data.getTemperatures();
         int indexOfMeasuredTemperatures = indexOfMeasuredTemps(startDateString, endDateString);
+        data.setIndexOfMeasuredTemperatures(indexOfMeasuredTemperatures);
 
         Map<LocalDate, List<Temperature>> temperaturesMap = new LinkedHashMap<>();
 
@@ -36,7 +37,10 @@ public class WeatherService {
         Dates dates = new Dates(temperaturesMap);
         dates.elapsedDays(startDate, endDate);
 
-        WeatherQuery weatherQuery = new WeatherQuery(omszId, temperaturesMap);
+        // ForecastQuery forecastQuery = new ForecastQuery(data, temperaturesMap);
+        // forecastQuery.queryForecast();
+
+        WeatherQuery weatherQuery = new WeatherQuery(omszId, temperaturesMap, data);
         weatherQuery.steps();
 
         if (indexOfMeasuredTemperatures > 0) {
@@ -48,10 +52,6 @@ public class WeatherService {
                 calculation.forecast(indexOfMeasuredTemperatures, last24hAverage);
             }
         }
-        data.setIndexOfMeasuredTemperatures(indexOfMeasuredTemperatures);
-
-        ForecastQuery forecastQuery = new ForecastQuery();
-        forecastQuery.queryForecast();
     }
 
     public int indexOfMeasuredTemps(String startDateString, String endDateString) {

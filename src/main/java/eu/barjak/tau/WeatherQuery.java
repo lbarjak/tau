@@ -19,13 +19,16 @@ public class WeatherQuery {
     int omszId;
     Map<LocalDate, List<Temperature>> temperaturesMap;
     private Logger logger = Logger.getLogger(WeatherQuery.class.getName());
+    Data data;
 
-    public WeatherQuery(int omszId, Map<LocalDate, List<Temperature>> temperaturesMap) {
+    public WeatherQuery(int omszId, Map<LocalDate, List<Temperature>> temperaturesMap, Data data) {
         this.temperaturesMap = temperaturesMap;
         this.omszId = omszId;
+        this.data = data;
     }
 
     public void steps() {
+        data.setColorIn("blue");
         LocalDate today = LocalDate.now();
         Set<LocalDate> localDates = temperaturesMap.keySet();
         for (LocalDate localDate : localDates) {

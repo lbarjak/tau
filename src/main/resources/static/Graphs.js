@@ -9,6 +9,7 @@ export default class Graphs {
 
     indexOfMeasuredTemperatures = data.indexOfMeasuredTemperatures
     temperatures = data.temperatures
+    colorIn = data.colorIn
     yTicks
     yTickMin
     yTickMax
@@ -91,7 +92,7 @@ export default class Graphs {
             x = i * width / this.temperatures.length
             y = (height / this.yTicks) * (this.temperatures[i]["roomTemp"] - this.yTickMin)
             if (colorOn) {
-                color = i <= this.indexOfMeasuredTemperatures ? "blue" : "red"
+                color = i <= this.indexOfMeasuredTemperatures ? this.colorIn : "red"
             }
             this.drawLine(ctx, [previousX, previousY], [x, y], color, 4)
             if (this.temperatures[i]["roomTemp"] != null) {

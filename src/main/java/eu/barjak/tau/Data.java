@@ -17,6 +17,8 @@ public class Data {
     private String startTime = "14:15";
     private String endDate = "2023.04.09.";
     private int correction = 0;
+    private String colorIn = "blue";
+    private String colorOut = "navy";
 
     private List<Temperature> temperatures = new ArrayList<>();
     private int indexOfMeasuredTemperatures;
