@@ -38,7 +38,7 @@ public class WeatherService {
         dates.elapsedDays(startDate, endDate);
 
         ForecastQuery forecastQuery = new ForecastQuery(data, temperaturesMap);
-        // forecastQuery.queryForecast();
+        forecastQuery.queryForecast();
 
         WeatherQuery weatherQuery = new WeatherQuery(omszId, temperaturesMap, data);
         weatherQuery.steps();
@@ -48,8 +48,9 @@ public class WeatherService {
             calculation.calculation(startTimeString, initRoomTemp);
 
             if (indexOfMeasuredTemperatures > 144) {
-                Double last24hAverage = calculation.last24hAverage(indexOfMeasuredTemperatures);
-                calculation.forecast(indexOfMeasuredTemperatures, last24hAverage);
+                // Double last24hAverage =
+                // calculation.last24hAverage(indexOfMeasuredTemperatures);
+                // calculation.forecast(indexOfMeasuredTemperatures, last24hAverage);
             }
         }
     }

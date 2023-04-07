@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 public class ForecastQuery {
 
     private Logger logger = Logger.getLogger(ForecastQuery.class.getName());
-    List<Double> forecast = new ArrayList<>();
+    // List<Double> forecast = new ArrayList<>();
     Data data;
     private Map<LocalDate, List<Temperature>> temperaturesMap;
 
@@ -59,7 +59,9 @@ public class ForecastQuery {
     }
 
     public void loadForecastToData(List<String> outdoorForecastTemperatureList) {
+
         List<Double> outdoorForecastTemperatureList2 = insertPoints(outdoorForecastTemperatureList);
+
         LocalDate today = LocalDate.now();
         Set<LocalDate> workDates = temperaturesMap.keySet();
         int indexMax;
@@ -73,6 +75,7 @@ public class ForecastQuery {
         int index = 0;
         Temperature temperature;
         for (LocalDate actualDate : workDates) {
+            System.out.println(actualDate);
             if (actualDate.isEqual(today) || actualDate.isAfter(today)) {
                 actualTemperature = temperaturesMap.get(actualDate);
                 int j = 0;
@@ -82,14 +85,13 @@ public class ForecastQuery {
                     if (index <= indexMax) {
                         temperature = actualTemperature.get(j);
                         outForecastTemp = outdoorForecastTemperatureList2.get(index);
+                        System.out.println(index + " " + outForecastTemp);
                         temperature.setOutdoorTemp(outForecastTemp);
                     }
                 }
                 i += j;
             }
         }
-        data.setColorIn("yellow");
-        data.setColorOut("pink");
     }
 
     public List<Double> insertPoints(List<String> outdoorForecastTemperatureList) {

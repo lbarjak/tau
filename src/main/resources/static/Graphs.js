@@ -120,7 +120,7 @@ export default class Graphs {
             }
             this.drawLine(ctx, [previousX, previousY], [x, y], color, 3)
             if (colorSwitch) {
-                color = "navy"
+                color = i <= this.indexOfMeasuredTemperatures ? "navy" : "brown"
             }
             previousX = x
             previousY = y
