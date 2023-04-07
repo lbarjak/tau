@@ -37,7 +37,7 @@ public class WeatherService {
         Dates dates = new Dates(temperaturesMap);
         dates.elapsedDays(startDate, endDate);
 
-        // ForecastQuery forecastQuery = new ForecastQuery(data, temperaturesMap);
+        ForecastQuery forecastQuery = new ForecastQuery(data, temperaturesMap);
         // forecastQuery.queryForecast();
 
         WeatherQuery weatherQuery = new WeatherQuery(omszId, temperaturesMap, data);
