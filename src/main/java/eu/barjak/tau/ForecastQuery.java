@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
 public class ForecastQuery {
 
     private Logger logger = Logger.getLogger(ForecastQuery.class.getName());
-    // List<Double> forecast = new ArrayList<>();
     Data data;
     private Map<LocalDate, List<Temperature>> temperaturesMap;
 
@@ -85,13 +84,13 @@ public class ForecastQuery {
                     if (index <= indexMax) {
                         temperature = actualTemperature.get(j);
                         outForecastTemp = outdoorForecastTemperatureList2.get(index);
-                        System.out.println(index + " " + outForecastTemp);
                         temperature.setOutdoorTemp(outForecastTemp);
                     }
                 }
                 i += j;
             }
         }
+        data.setIndexOfForecast(index);
     }
 
     public List<Double> insertPoints(List<String> outdoorForecastTemperatureList) {

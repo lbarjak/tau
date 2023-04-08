@@ -51,11 +51,11 @@ public class Calculation {
         }
     }
 
-    public Double last24hAverage(int indexOfMeasuredTemperatures) {
+    public Double last24hAverage(int indexOfTemperatures) {
         Double sum = 0.0;
         Double temp;
         int divider = 144;
-        for (int i = indexOfMeasuredTemperatures - 1; i > indexOfMeasuredTemperatures - 145; i--) {
+        for (int i = indexOfTemperatures - 1; i > indexOfTemperatures - 145; i--) {
             temp = temperatures.get(i).getOutdoorTemp();
             if (temp != null) {
                 sum += temp;
@@ -66,9 +66,9 @@ public class Calculation {
         return sum / divider;
     }
 
-    public void forecast(int indexOfMeasuredTemperatures, Double last24hAverage) {
-        Double roomTemp = temperatures.get(indexOfMeasuredTemperatures - 1).getRoomTemp();
-        for (int i = indexOfMeasuredTemperatures; i < temperatures.size(); i++) {
+    public void forecast(int indexOfTemperatures, Double last24hAverage) {
+        Double roomTemp = temperatures.get(indexOfTemperatures - 1).getRoomTemp();
+        for (int i = indexOfTemperatures; i < temperatures.size(); i++) {
 
             temperatures.get(i).setOutdoorTemp(last24hAverage + correction);
 

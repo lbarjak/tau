@@ -22,5 +22,6 @@ public class Data {
 
     private List<Temperature> temperatures = new ArrayList<>();
     private int indexOfMeasuredTemperatures;
+    private int indexOfForecast;
 
 }
