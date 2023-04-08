@@ -74,14 +74,13 @@ public class ForecastQuery {
         int index = 0;
         Temperature temperature;
         for (LocalDate actualDate : workDates) {
-            System.out.println(actualDate);
             if (actualDate.isEqual(today) || actualDate.isAfter(today)) {
                 actualTemperature = temperaturesMap.get(actualDate);
                 int j = 0;
                 Double outForecastTemp;
                 for (j = 0; j < 144; j++) {
                     index = i + j;
-                    if (index <= indexMax) {
+                    if (index < indexMax) {
                         temperature = actualTemperature.get(j);
                         outForecastTemp = outdoorForecastTemperatureList2.get(index);
                         temperature.setOutdoorTemp(outForecastTemp);
