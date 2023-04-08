@@ -52,9 +52,7 @@ public class ForecastQuery {
         Matcher matcher = pattern.matcher(inputLine);
         matcher.find();
         String outdoorForecastTemperatureString = matcher.group();
-        List<String> outdoorForecastTemperatureList = new ArrayList<>(
-                Arrays.asList(outdoorForecastTemperatureString.split(",")));
-        return outdoorForecastTemperatureList;
+        return new ArrayList<>(Arrays.asList(outdoorForecastTemperatureString.split(",")));
     }
 
     public void loadForecastToData(List<String> outdoorForecastTemperatureList) {
