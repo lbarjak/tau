@@ -82,6 +82,8 @@ public class ForecastQuery {
                         temperature = actualTemperature.get(j);
                         outForecastTemp = outdoorForecastTemperatureList2.get(index);
                         temperature.setOutdoorTemp(outForecastTemp);
+                    } else {
+                        break;
                     }
                 }
                 i += j;

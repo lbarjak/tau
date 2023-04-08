@@ -54,6 +54,12 @@ public class WeatherService {
                         .last24hAverage(indexOfMeasuredTemperatures);
                 calculation.forecast(indexOfMeasuredTemperatures, last24hAverage);
             }
+            if (data.getOmszId() == 590) {
+                int indexOfForecast = data.getIndexOfForecast();
+                Double last24hAverage = calculation
+                        .last24hAverage(indexOfForecast);
+                calculation.forecast(indexOfForecast, last24hAverage);
+            }
         }
     }
 

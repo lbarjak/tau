@@ -8,6 +8,7 @@ export default class Graphs {
     }
 
     indexOfMeasuredTemperatures = data.indexOfMeasuredTemperatures
+    indexOfForecast = data.indexOfForecast
     temperatures = data.temperatures
     colorIn = data.colorIn
     yTicks
