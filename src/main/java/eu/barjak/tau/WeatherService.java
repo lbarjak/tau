@@ -9,19 +9,50 @@ import java.util.List;
 import java.util.Map;
 import java.io.IOException;
 import java.time.Duration;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Service
+@Setter
+@Getter
+@ConfigurationProperties(prefix = "tau")
 public class WeatherService {
+    int thermalTimeConstant;
+    Double initRoomTemp;
+    int omszId;
+    String startDateString;
+    String startTimeString;
+    String endDateString;
+    int correction;
+    boolean load;
+
+    WeatherService() {
+        this.load = true;
+    }
 
     public void weather(Data data) throws IOException {
-        int thermalTimeConstant = data.getThermalTimeConstant();
-        Double initRoomTemp = data.getInitRoomTemp();
-        int omszId = data.getOmszId();
-        String startDateString = data.getStartDate();
-        String startTimeString = data.getStartTime();
-        String endDateString = data.getEndDate();
-        int correction = data.getCorrection();
+        if (load) {
+            data.setThermalTimeConstant(thermalTimeConstant);
+            data.setInitRoomTemp(initRoomTemp);
+            data.setOmszId(omszId);
+            data.setStartDate(startDateString);
+            data.setStartTime(startTimeString);
+            data.setEndDate(endDateString);
+            data.setCorrection(correction);
+        }
+        load = false;
+        thermalTimeConstant = data.getThermalTimeConstant();
+        initRoomTemp = data.getInitRoomTemp();
+        omszId = data.getOmszId();
+        startDateString = data.getStartDate();
+        startTimeString = data.getStartTime();
+        endDateString = data.getEndDate();
+        correction = data.getCorrection();
+
         List<Temperature> temperatures = data.getTemperatures();
         int indexOfMeasuredTemperatures = indexOfMeasuredTemps(startDateString, endDateString);
         data.setIndexOfMeasuredTemperatures(indexOfMeasuredTemperatures);
