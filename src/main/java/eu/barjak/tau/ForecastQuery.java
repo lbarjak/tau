@@ -57,13 +57,10 @@ public class ForecastQuery {
     }
 
     public void loadForecastToData(List<String> outdoorForecastTemperatureList) {
-        logger.log(Level.INFO, outdoorForecastTemperatureList.size() + "");
 
         List<Double> outdoorForecastTemperatureList2 = insertPoints(outdoorForecastTemperatureList);
-        logger.log(Level.INFO, outdoorForecastTemperatureList2.size() + " 2size");
         LocalDate today = LocalDate.now();
         Set<LocalDate> workDates = temperaturesMap.keySet();
-        logger.log(Level.INFO, "workDates " + workDates.size());
 
         int indexMax;
         if (workDates.size() * 144 <= outdoorForecastTemperatureList2.size()) {
@@ -71,21 +68,18 @@ public class ForecastQuery {
         } else {
             indexMax = outdoorForecastTemperatureList2.size();
         }
-        logger.log(Level.INFO, "indexMax " + indexMax);
 
         List<Temperature> actualTemperature;
         int i = 0;
         int index = 0;
         Temperature temperature;
         for (LocalDate actualDate : workDates) {
-            if (!actualDate.isBefore(today)) {// mai naptól kezdi
-                logger.log(Level.INFO, "actualDate " + actualDate);
-                actualTemperature = temperaturesMap.get(actualDate);// 144 db Temperature
+            if (!actualDate.isBefore(today)) {
+                actualTemperature = temperaturesMap.get(actualDate);
                 int j = 0;
                 Double outForecastTemp;
                 for (j = 0; j < 144; j++) {
                     index = i + j;
-                    logger.log(Level.INFO, "index " + index);
                     if (index < indexMax) {
                         temperature = actualTemperature.get(j);
                         outForecastTemp = outdoorForecastTemperatureList2.get(index);
@@ -97,7 +91,6 @@ public class ForecastQuery {
                 i += j;
             }
         }
-        data.setIndexOfForecast(index);
     }
 
     public List<Double> insertPoints(List<String> outdoorForecastTemperatureList) {

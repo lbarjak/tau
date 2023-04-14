@@ -80,7 +80,7 @@
 			<span>&nbsp;</span>
 			<label for="startDate">Kezdő dátum:</label>
 			<input th:field="${data.startDate}" type="text" id="startDate" name="startDate" size="11" maxlength="11"
-				pattern="^\d{4}[\.\/\s]?((((0[13578])|(1[02]))[\.\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\.\/\s]?(([0-2][0-9])|(30)))|(02[\.\/\s]?[0-2][0-9]))\.$">
+				pattern="^2023\.((((0[13578])|(1[02]))\.(([0-2][0-9])|(3[01])))|(((0[469])|(11))\.(([0-2][0-9])|(30)))|(02\.[0-2][0-9]))\.$">
 			<span>&nbsp;</span>
 			<label for="startTime">Kezdő időpont:</label>
 			<input th:field="${data.startTime}" type="text" id="startTime" name="startTime" size="5" maxlength="5"
@@ -88,7 +88,7 @@
 			<span>&nbsp;</span>
 			<label for="endDate">Záró dátum:</label>
 			<input th:field="${data.endDate}" type="text" id="endDate" name="endDate" size="11" maxlength="11"
-				pattern="^\d{4}[\.\/\s]?((((0[13578])|(1[02]))[\.\/\s]?(([0-2][0-9])|(3[01])))|(((0[469])|(11))[\.\/\s]?(([0-2][0-9])|(30)))|(02[\.\/\s]?[0-2][0-9]))\.$">
+				pattern="^2023\.((((0[13578])|(1[02]))\.(([0-2][0-9])|(3[01])))|(((0[469])|(11))\.(([0-2][0-9])|(30)))|(02\.[0-2][0-9]))\.$">
 			<span>&nbsp;</span>
 			<label for="startTime">Korrekció:</label>
 			<input th:field="${data.correction}" type="text" id="correction" name="correction" size="1" maxlength="1"
