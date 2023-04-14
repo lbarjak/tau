@@ -21,13 +21,13 @@ import lombok.Setter;
 @Getter
 @ConfigurationProperties(prefix = "tau")
 public class WeatherService {
-    int thermalTimeConstant;
-    Double initRoomTemp;
-    int omszId;
-    String startDateString;
-    String startTimeString;
-    String endDateString;
-    int correction;
+    int thermalTimeConstant1;
+    Double initRoomTemp1;
+    int omszId1;
+    String startDateString1;
+    String startTimeString1;
+    String endDateString1;
+    int correction1;
     boolean load;
 
     WeatherService() {
@@ -35,23 +35,23 @@ public class WeatherService {
     }
 
     public void weather(Data data) throws IOException {
-        if (load) {
-            data.setThermalTimeConstant(thermalTimeConstant);
-            data.setInitRoomTemp(initRoomTemp);
-            data.setOmszId(omszId);
-            data.setStartDate(startDateString);
-            data.setStartTime(startTimeString);
-            data.setEndDate(endDateString);
-            data.setCorrection(correction);
+        if (load || data.getStartDate() == null) {
+            data.setThermalTimeConstant(thermalTimeConstant1);
+            data.setInitRoomTemp(initRoomTemp1);
+            data.setOmszId(omszId1);
+            data.setStartDate(startDateString1);
+            data.setStartTime(startTimeString1);
+            data.setEndDate(endDateString1);
+            data.setCorrection(correction1);
         }
         load = false;
-        thermalTimeConstant = data.getThermalTimeConstant();
-        initRoomTemp = data.getInitRoomTemp();
-        omszId = data.getOmszId();
-        startDateString = data.getStartDate();
-        startTimeString = data.getStartTime();
-        endDateString = data.getEndDate();
-        correction = data.getCorrection();
+        int thermalTimeConstant = data.getThermalTimeConstant();
+        Double initRoomTemp = data.getInitRoomTemp();
+        int omszId = data.getOmszId();
+        String startDateString = data.getStartDate();
+        String startTimeString = data.getStartTime();
+        String endDateString = data.getEndDate();
+        int correction = data.getCorrection();
 
         List<Temperature> temperatures = data.getTemperatures();
         int indexOfMeasuredTemperatures = indexOfMeasuredTemps(startDateString, endDateString);
@@ -89,6 +89,7 @@ public class WeatherService {
     }
 
     public int indexOfMeasuredTemps(String startDateString, String endDateString) {
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd.");
         LocalDateTime now = LocalDateTime.now();
 
