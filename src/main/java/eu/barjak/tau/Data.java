@@ -10,13 +10,13 @@ import lombok.Setter;
 @Getter
 public class Data {
 
-    private int thermalTimeConstant = 50;
-    private Double initRoomTemp = 20d;
-    private int omszId = 590;
-    private String startDate = "2023.04.08.";
-    private String startTime = "00:00";
-    private String endDate = "2023.04.15.";
-    private int correction = 0;
+    private int thermalTimeConstant;
+    private Double initRoomTemp;
+    private int omszId;
+    private String startDate;
+    private String startTime;
+    private String endDate;
+    private int correction;
     private String colorIn = "blue";
     private String colorOut = "navy";
 
