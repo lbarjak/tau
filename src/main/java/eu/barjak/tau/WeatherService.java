@@ -28,14 +28,9 @@ public class WeatherService {
     String startTimeString1;
     String endDateString1;
     int correction1;
-    boolean load;
-
-    WeatherService() {
-        this.load = true;
-    }
 
     public void weather(Data data) throws IOException {
-        if (load || data.getStartDate() == null) {
+        if (data.getStartDate() == null) {
             data.setThermalTimeConstant(thermalTimeConstant1);
             data.setInitRoomTemp(initRoomTemp1);
             data.setOmszId(omszId1);
@@ -44,7 +39,6 @@ public class WeatherService {
             data.setEndDate(endDateString1);
             data.setCorrection(correction1);
         }
-        load = false;
         int thermalTimeConstant = data.getThermalTimeConstant();
         Double initRoomTemp = data.getInitRoomTemp();
         int omszId = data.getOmszId();
