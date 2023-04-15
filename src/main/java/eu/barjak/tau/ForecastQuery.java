@@ -64,7 +64,7 @@ public class ForecastQuery {
 
         int indexMax;
         if (workDates.size() * 144 <= outdoorForecastTemperatureList2.size()) {
-            indexMax = workDates.size();
+            indexMax = workDates.size() * 144;
         } else {
             indexMax = outdoorForecastTemperatureList2.size();
         }
