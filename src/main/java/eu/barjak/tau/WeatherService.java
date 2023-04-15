@@ -10,35 +10,12 @@ import java.util.Map;
 import java.io.IOException;
 import java.time.Duration;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
-import lombok.Getter;
-import lombok.Setter;
-
 @Service
-@Setter
-@Getter
-@ConfigurationProperties(prefix = "tau")
 public class WeatherService {
-    int thermalTimeConstant1;
-    Double initRoomTemp1;
-    int omszId1;
-    String startDateString1;
-    String startTimeString1;
-    String endDateString1;
-    int correction1;
 
     public void weather(Data data) throws IOException {
-        if (data.getStartDate() == null) {
-            data.setThermalTimeConstant(thermalTimeConstant1);
-            data.setInitRoomTemp(initRoomTemp1);
-            data.setOmszId(omszId1);
-            data.setStartDate(startDateString1);
-            data.setStartTime(startTimeString1);
-            data.setEndDate(endDateString1);
-            data.setCorrection(correction1);
-        }
         int thermalTimeConstant = data.getThermalTimeConstant();
         Double initRoomTemp = data.getInitRoomTemp();
         int omszId = data.getOmszId();

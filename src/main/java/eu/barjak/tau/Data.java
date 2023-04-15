@@ -3,11 +3,20 @@ package eu.barjak.tau;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
+@Component
+@Configurable
+@ConfigurationProperties(prefix = "tau")
 public class Data {
 
     private int thermalTimeConstant;
