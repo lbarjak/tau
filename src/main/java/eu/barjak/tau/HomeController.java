@@ -20,7 +20,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
     public String dataForm(Model model) throws IOException {
         model.addAttribute("data", data);
-        weatherService.weather(data);
+        weatherService.weather();
         return "index";
     }
 

@@ -10,12 +10,16 @@ import java.util.Map;
 import java.io.IOException;
 import java.time.Duration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class WeatherService {
 
-    public void weather(Data data) throws IOException {
+    @Autowired
+    Data data;
+
+    public void weather() throws IOException {
         int thermalTimeConstant = data.getThermalTimeConstant();
         Double initRoomTemp = data.getInitRoomTemp();
         int omszId = data.getOmszId();
