@@ -13,12 +13,10 @@ import java.time.Duration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
-import lombok.Getter;
 import lombok.Setter;
 
 @Service
 @Setter
-@Getter
 @ConfigurationProperties(prefix = "tau")
 public class WeatherService {
     int thermalTimeConstant1;
