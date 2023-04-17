@@ -29,8 +29,6 @@ public class WeatherService {
             data.setEndDate(data2.getEndDate());
             data.setCorrection(data2.getCorrection());
         }
-        System.out.println("data2 " + data2.toString());
-        System.out.println("data " + data.toString());
 
         int thermalTimeConstant = data.getThermalTimeConstant();
         Double initRoomTemp = data.getInitRoomTemp();
