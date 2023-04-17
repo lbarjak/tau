@@ -19,7 +19,19 @@ public class WeatherService {
     @Autowired
     Data data;
 
-    public void weather() throws IOException {
+    public void weather(Data data2) throws IOException {
+        if (data2.getStartDate() != null) {
+            data.setThermalTimeConstant(data2.getThermalTimeConstant());
+            data.setInitRoomTemp(data2.getInitRoomTemp());
+            data.setOmszId(data2.getOmszId());
+            data.setStartDate(data2.getStartDate());
+            data.setStartTime(data2.getStartTime());
+            data.setEndDate(data2.getEndDate());
+            data.setCorrection(data2.getCorrection());
+        }
+        System.out.println("data2 " + data2.toString());
+        System.out.println("data " + data.toString());
+
         int thermalTimeConstant = data.getThermalTimeConstant();
         Double initRoomTemp = data.getInitRoomTemp();
         int omszId = data.getOmszId();

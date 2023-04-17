@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,9 +19,9 @@ public class HomeController {
     private Data data;
 
     @RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
-    public String dataForm(Model model) throws IOException {
+    public String dataForm(@ModelAttribute("data") Data data2, Model model) throws IOException {
         model.addAttribute("data", data);
-        weatherService.weather();
+        weatherService.weather(data2);
         return "index";
     }
 
