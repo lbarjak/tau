@@ -20,16 +20,6 @@ public class WeatherService {
     Data data;
 
     public void weather(Data data2) throws IOException {
-        if (data2.getStartDate() != null) {
-            data.setThermalTimeConstant(data2.getThermalTimeConstant());
-            data.setInitRoomTemp(data2.getInitRoomTemp());
-            data.setOmszId(data2.getOmszId());
-            data.setStartDate(data2.getStartDate());
-            data.setStartTime(data2.getStartTime());
-            data.setEndDate(data2.getEndDate());
-            data.setCorrection(data2.getCorrection());
-        }
-
         int thermalTimeConstant = data.getThermalTimeConstant();
         Double initRoomTemp = data.getInitRoomTemp();
         int omszId = data.getOmszId();
@@ -37,6 +27,16 @@ public class WeatherService {
         String startTimeString = data.getStartTime();
         String endDateString = data.getEndDate();
         int correction = data.getCorrection();
+
+        if (data2.getStartDate() != null) {
+            thermalTimeConstant = data2.getThermalTimeConstant();
+            initRoomTemp = data2.getInitRoomTemp();
+            omszId = data2.getOmszId();
+            startDateString = data2.getStartDate();
+            startTimeString = data2.getStartTime();
+            endDateString = data2.getEndDate();
+            correction = data2.getCorrection();
+        }
 
         List<Temperature> temperatures = data.getTemperatures();
         int indexOfMeasuredTemperatures = indexOfMeasuredTemps(startDateString, endDateString);
