@@ -15,13 +15,10 @@ public class HomeController {
     @Autowired
     private WeatherService weatherService;
 
-    @Autowired
-    private Data data;
-
     @RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST })
-    public String dataForm(@ModelAttribute("data") Data data2, Model model) throws IOException {
+    public String dataForm(@ModelAttribute("data") Data data, Model model) throws IOException {
         model.addAttribute("data", data);
-        weatherService.weather(data2);
+        weatherService.weather(data);
         return "index";
     }
 
