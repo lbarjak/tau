@@ -75,8 +75,13 @@
 				pattern="^([0-9]|[1-5][0-9])(\.[0-9])?$">
 			<span>&nbsp;</span>
 			<label for="omszId">OMSZ állomás:</label>
-			<input th:field="${data.omszId}" type="text" id="omszId" name="omszId" size="3" maxlength="3"
-				pattern="^(0[1-9]|[1-9][0-9]{1,2})$">
+			<input list="omszList" th:placeholder="${data.omszId}" type="text" id="omszId" name="omszId" size="4"
+				maxlength="4" pattern="^(0[1-9]|[1-9][0-9]{1,2})$">
+			<datalist id="omszList" th:field="${data.omszId}">
+				<option th:value="590">Martonvásár OMSZ</option>
+				<option th:value="615"> Lágymányos</option>
+				<option th:value="141">Bp. Szentimreváros</option>
+			</datalist>
 			<span>&nbsp;</span>
 			<label for="startDate">Kezdő dátum:</label>
 			<input th:field="${data.startDate}" type="text" id="startDate" name="startDate" size="11" maxlength="11"
