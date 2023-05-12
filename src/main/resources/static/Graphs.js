@@ -11,7 +11,6 @@ export default class Graphs {
     indexOfForecast = data.indexOfForecast
     temperatures = data.temperatures
     colorIn = data.colorIn
-    yTicks
     yTickMin
     yTickMax
 
